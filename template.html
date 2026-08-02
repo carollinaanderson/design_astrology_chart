@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<!--
+  TEMPLATE: relatório de numerologia cabalística + astrologia (mapa natal + revolução solar)
+  Estética: "matcha girl" — moderna, clean, editorial, com toques artesanais (washi tape, selo, papel).
+  Como usar: substitua todos os tokens {{ASSIM}} pelos dados reais do cliente. Páginas marcadas
+  [OPCIONAL] só entram se o cliente tiver marca/empresa. Mantenha a estrutura de <div class="page">
+  — cada uma é uma folha A4 que quebra para impressão/PDF. NÃO altere o bloco <style> a menos que o
+  cliente peça uma paleta diferente (ver seção "como trocar a paleta" no SKILL.md).
+-->
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>{{NOME_CLIENTE}} — Numerologia & Astrologia</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600;700&family=Caveat:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+:root{
+  --cream:#f5f1e6;
+  --paper:#fbf9f2;
+  --matcha-50:#eef1e0;
+  --matcha-100:#e0e7cb;
+  --matcha-300:#b3c48c;
+  --matcha-500:#7c9358;
+  --matcha-700:#495a34;
+  --matcha-900:#252e1b;
+  --clay:#bf7952;
+  --clay-soft:#e9c8ae;
+  --gold:#b28a3f;
+  --lilac:#8878ab;
+  --rose:#c08b92;
+  --ink:#2a281f;
+  --ink-soft:#655f4d;
+  --line: rgba(37,46,27,0.18);
+}
+
+*{box-sizing:border-box; margin:0; padding:0;}
+body{font-family:'Inter',sans-serif; color:var(--ink); background:#d9d2bd;}
+
+.page{
+  width:210mm; min-height:297mm; position:relative;
+  padding:20mm 20mm 24mm 20mm; overflow:hidden;
+  background-color:var(--cream);
+  background-image:
+    radial-gradient(circle at 12% 8%, rgba(255,255,255,.5) 0%, transparent 38%),
+    radial-gradient(circle at 92% 95%, rgba(37,46,27,.05) 0%, transparent 42%);
+  page-break-after: always;
+}
+.page:last-child{ page-break-after:auto; }
+
+/* ---------- typography ---------- */
+h1,h2,h3,.display{ font-family:'Fraunces', serif; color:var(--matcha-900); font-weight:600; }
+.display-italic{ font-style:italic; font-weight:500; }
+.script{ font-family:'Caveat', cursive; color:var(--clay); }
+.eyebrow{ font-family:'Space Mono', monospace; font-size:10.5px; letter-spacing:2.2px; text-transform:uppercase; color:var(--gold); }
+.mono{ font-family:'Space Mono', monospace; }
+p, .body-txt{ font-size:13.3px; line-height:1.72; color:var(--ink); }
+.soft{ color:var(--ink-soft); }
+
+/* ---------- structural devices ---------- */
+.sigil{ width:30px; height:30px; color:var(--matcha-700); flex:none; }
+.headline-row{ display:flex; align-items:center; gap:12px; margin-bottom:2px; }
+.page-title{ font-size:25px; line-height:1.22; }
+.rule{ border:none; height:1px; background:linear-gradient(90deg, var(--gold), transparent 75%); margin:12px 0 18px 0; }
+.rule.full{ background:var(--line); }
+
+.tape{ position:absolute; height:22px; width:108px; opacity:.9; box-shadow:0 1px 3px rgba(0,0,0,.18); }
+.tape.matcha{ background:repeating-linear-gradient(45deg,var(--matcha-500),var(--matcha-500) 7px,var(--matcha-300) 7px,var(--matcha-300) 14px); }
+.tape.clay{ background:repeating-linear-gradient(45deg,var(--clay),var(--clay) 7px,var(--clay-soft) 7px,var(--clay-soft) 14px); }
+.tape.gold{ background:repeating-linear-gradient(45deg,var(--gold),var(--gold) 7px,#e3cf9c 7px,#e3cf9c 14px); }
+.tape.lilac{ background:repeating-linear-gradient(45deg,var(--lilac),var(--lilac) 7px,#cfc6e2 7px,#cfc6e2 14px); }
+
+.seal{ width:118px; height:118px; border:1.3px solid var(--matcha-700); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto; position:relative; }
+.seal::before{ content:''; position:absolute; inset:8px; border:1px solid var(--gold); border-radius:50%; }
+.seal .seal-txt{ font-family:'Space Mono',monospace; font-size:8.5px; letter-spacing:1.5px; text-transform:uppercase; color:var(--matcha-700); text-align:center; line-height:1.5; }
+
+.card{
+  background:var(--paper); border:1px solid var(--line);
+  box-shadow:0 3px 16px rgba(37,46,27,.07);
+  padding:14px 17px; position:relative; border-radius:3px;
+}
+.card.accent{ border-left:3px solid var(--matcha-500); }
+.card.accent-clay{ border-left:3px solid var(--clay); }
+.card.accent-gold{ border-left:3px solid var(--gold); }
+.card.accent-lilac{ border-left:3px solid var(--lilac); }
+.card.tinted{ background:var(--matcha-50); }
+.card.tinted-clay{ background:#f3e4d6; }
+
+.grid3{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:11px; }
+.grid2{ display:grid; grid-template-columns:1fr 1fr; gap:11px; }
+
+.bignum{ font-family:'Fraunces',serif; font-weight:700; font-style:italic; font-size:34px; color:var(--clay); line-height:1; }
+.label{ font-family:'Space Mono',monospace; font-size:10px; color:var(--matcha-700); letter-spacing:1px; text-transform:uppercase; }
+.desc{ font-family:'Inter',sans-serif; font-size:12px; color:var(--ink-soft); margin-top:5px; line-height:1.55; }
+
+.chip{ display:inline-block; background:var(--matcha-100); color:var(--matcha-900); border-radius:3px; padding:2px 9px; font-family:'Space Mono',monospace; font-size:10.5px; margin:2px 3px 2px 0; }
+.chip.clay{ background:var(--clay-soft); color:#5c3a24; }
+.chip.gold{ background:#ecdcb3; color:#5c4415; }
+
+.timeline{ position:relative; margin:18px 0; padding-left:14px; border-left:1.4px solid var(--matcha-300); }
+.tl-item{ position:relative; margin-bottom:16px; padding-left:16px; }
+.tl-item::before{ content:'✦'; position:absolute; left:-24px; top:-1px; color:var(--gold); font-size:12px; }
+
+table.rep{ width:100%; border-collapse:collapse; font-size:11.6px; }
+table.rep th{ font-family:'Space Mono',monospace; font-size:9.5px; text-transform:uppercase; letter-spacing:.6px; color:var(--matcha-700); text-align:left; padding:6px 7px; border-bottom:1.4px solid var(--matcha-500); }
+table.rep td{ padding:7px; border-bottom:1px solid var(--line); vertical-align:top; }
+table.rep tr:nth-child(even) td{ background:rgba(124,147,88,.05); }
+
+.footer-note{ position:absolute; bottom:11mm; left:20mm; right:20mm; font-family:'Caveat',cursive; font-size:14px; color:var(--ink-soft); text-align:center; }
+.pagenum{ position:absolute; bottom:9mm; right:16mm; font-family:'Space Mono',monospace; font-size:10px; color:var(--ink-soft); }
+.pagesub{ position:absolute; bottom:9mm; left:20mm; font-family:'Space Mono',monospace; font-size:9px; color:var(--ink-soft); letter-spacing:1px; text-transform:uppercase; }
+
+.planet-glyph{ font-size:15px; color:var(--matcha-700); width:20px; display:inline-block; }
+.zbadge{ font-family:'Space Mono',monospace; font-size:10px; background:var(--matcha-900); color:var(--cream); border-radius:10px; padding:1px 8px; }
+
+.callout{ background:var(--matcha-900); color:var(--cream); padding:16px 20px; border-radius:3px; }
+.callout .eyebrow{ color:var(--matcha-300); }
+.callout p{ color:#f0ecdd; }
+</style>
+</head>
+<body>
+
+<!-- ============================================== PAGE 1 — CAPA ============================================== -->
+<div class="page">
+  <div class="tape clay" style="top:16mm; left:22mm; transform:rotate(-7deg);"></div>
+  <div class="tape matcha" style="top:14mm; right:24mm; transform:rotate(6deg);"></div>
+
+  <div style="text-align:center; margin-top:34mm;">
+    <div class="seal">
+      <div class="seal-txt">dossiê pessoal<br>★<br>num. & astro.</div>
+    </div>
+  </div>
+
+  <div style="text-align:center; margin-top:20mm;">
+    <div class="eyebrow">um mapa cabalístico · um mapa astral{{ / um laboratório de nomes — remova se não aplicável}}, para</div>
+    <div class="display display-italic" style="font-size:46px; margin-top:12px; color:var(--matcha-900);">{{NOME_CLIENTE}}</div>
+    <div class="script" style="font-size:21px; margin-top:16px;">→ {{FRASE_DE_GANCHO — o que este dossiê ajuda a decidir/enxergar}}</div>
+  </div>
+
+  <div class="card accent" style="width:74%; margin:16mm auto 0 auto; padding:16px 22px;">
+    <div class="body-txt" style="line-height:1.9;">
+      <b>Nascimento:</b> {{DATA_HORA_LOCAL_NASCIMENTO}} &nbsp;·&nbsp; <b>Sol em {{SIGNO_SOLAR}}</b> · <b>Ascendente em {{SIGNO_ASC}}</b><br>
+      <b>Arcano cabalístico atual:</b> {{ARCANO_ATUAL}} &nbsp;·&nbsp; vigência {{DATA_INICIO_ARCANO}} → {{DATA_FIM_ARCANO}}<br>
+      <b>Condição da personalidade:</b> {{CONDICAO_PERSONALIDADE}}
+    </div>
+  </div>
+
+  <div style="text-align:center; margin-top:22mm;">
+    <div class="script" style="font-size:17px; color:var(--ink-soft);">elaborado com números, arcanos e mapa do céu, pela sua</div>
+    <div class="display" style="font-size:20px; margin-top:4px; color:var(--matcha-700);">amiga de numerologia cabalística &amp; leitura astrológica</div>
+    <div class="mono soft" style="font-size:10.5px; margin-top:8px; letter-spacing:.5px;">— lendo números, arcanos, nomes e céus de nascimento —</div>
+  </div>
+</div>
+
+<!-- ============================================== PAGE 2 — CARTA DE ABERTURA ============================================== -->
+<div class="page">
+  <div class="tape gold" style="top:12mm; left:50%; margin-left:-54px; transform:rotate(-2deg);"></div>
+  <div class="headline-row" style="margin-top:14mm;">
+    <svg class="sigil" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="20" cy="20" r="2" fill="currentColor"/><line x1="20" y1="2" x2="20" y2="8" stroke="currentColor" stroke-width="1.2"/><line x1="20" y1="32" x2="20" y2="38" stroke="currentColor" stroke-width="1.2"/><line x1="2" y1="20" x2="8" y2="20" stroke="currentColor" stroke-width="1.2"/><line x1="32" y1="20" x2="38" y2="20" stroke="currentColor" stroke-width="1.2"/></svg>
+    <h1 class="page-title">antes de tudo, uma carta ✎</h1>
+  </div>
+  <hr class="rule">
+
+  <div class="card" style="padding:22px 26px; margin-top:6px;">
+    <p>{{ABERTURA_PESSOAL — 1 parágrafo curto e caloroso, citando apelidos/variações de nome do cliente se houver}}</p><br>
+    <p>{{RESUMO_DO_QUE_O_DOSSIE_CONTEM — liste as seções incluídas nesta edição}}</p><br>
+    <p class="script" style="font-size:18px;">{{FRASE_DE_EFEITO — uma linha que resume a "virada" ou tema central que os dois mapas revelam}}</p><br>
+    <p>Vamos com calma, uma página de cada vez.</p>
+  </div>
+
+  <div style="text-align:right; margin-top:22px;">
+    <div class="script" style="font-size:19px;">com carinho,</div>
+    <div class="display" style="font-size:17px; margin-top:4px; color:var(--clay);">sua amiga</div>
+  </div>
+  <div class="pagesub">{{nome_curto_cliente}} · dossiê pessoal</div>
+  <div class="pagenum">02</div>
+</div>
+
+<!-- ============================================== PAGE 3 — MAPA ESSENCIAL (numerologia pessoal) ============================================== -->
+<div class="page">
+  <div class="tape matcha" style="top:12mm; left:22mm; transform:rotate(-5deg);"></div>
+  <div class="headline-row" style="margin-top:6mm;">
+    <svg class="sigil" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="20" cy="20" r="2" fill="currentColor"/><line x1="20" y1="2" x2="20" y2="8" stroke="currentColor" stroke-width="1.2"/><line x1="20" y1="32" x2="20" y2="38" stroke="currentColor" stroke-width="1.2"/><line x1="2" y1="20" x2="8" y2="20" stroke="currentColor" stroke-width="1.2"/><line x1="32" y1="20" x2="38" y2="20" stroke="currentColor" stroke-width="1.2"/></svg>
+    <h1 class="page-title">seu mapa essencial — o que vem de fábrica</h1>
+  </div>
+  <div class="eyebrow" style="margin:2px 0 8px 34px;">calculado a partir de "{{NOME_COMPLETO}}" + {{DATA_NASCIMENTO}}</div>
+  <hr class="rule">
+
+  <div class="grid3" style="margin-top:4px;">
+    <div class="card accent">
+      <div class="label">Motivação (nº da alma)</div>
+      <div class="bignum">{{MOTIVACAO}} <span style="font-size:14px; color:var(--ink-soft); font-style:normal;">({{MOTIVACAO_SOMA}})</span></div>
+      <div class="desc">{{INTERPRETACAO_MOTIVACAO — o que move a pessoa por dentro; 2-3 frases}}</div>
+    </div>
+    <div class="card accent-clay">
+      <div class="label">Impressão (personalidade)</div>
+      <div class="bignum">{{IMPRESSAO}} <span style="font-size:14px; color:var(--ink-soft); font-style:normal;">({{IMPRESSAO_SOMA}})</span></div>
+      <div class="desc">{{INTERPRETACAO_IMPRESSAO — primeira impressão que a pessoa causa}}</div>
+    </div>
+    <div class="card accent-gold">
+      <div class="label">Expressão (nº do nome)</div>
+      <div class="bignum">{{EXPRESSAO}} <span style="font-size:14px; color:var(--ink-soft); font-style:normal;">({{EXPRESSAO_SOMA}})</span></div>
+      <div class="desc">{{INTERPRETACAO_EXPRESSAO — como a pessoa entrega/comunica o que é}}</div>
+    </div>
+    <div class="card accent">
+      <div class="label">Destino (caminho de vida)</div>
+      <div class="bignum">{{DESTINO}} <span style="font-size:14px; color:var(--ink-soft); font-style:normal;">({{DESTINO_SOMA}})</span></div>
+      <div class="desc">{{INTERPRETACAO_DESTINO}}</div>
+    </div>
+    <div class="card accent-clay">
+      <div class="label">Missão</div>
+      <div class="bignum">{{MISSAO}} <span style="font-size:14px; color:var(--ink-soft); font-style:normal;">({{MISSAO_SOMA}})</span></div>
+      <div class="desc">{{INTERPRETACAO_MISSAO}}</div>
+    </div>
+    <div class="card accent-gold">
+      <div class="label">Talento oculto</div>
+      <div class="bignum">{{TALENTO_OCULTO}}</div>
+      <div class="desc">{{INTERPRETACAO_TALENTO_OCULTO}}</div>
+    </div>
+  </div>
+
+  <div class="grid2" style="margin-top:12px;">
+    <div class="card tinted">
+      <div class="label">Número psíquico</div>
+      <div class="bignum" style="font-size:26px;">{{NUMERO_PSIQUICO}}</div>
+      <div class="desc">{{INTERPRETACAO_PSIQUICO — reação automática, no piloto automático}}</div>
+    </div>
+    <div class="card tinted">
+      <div class="label">Arcano atual — {{ARCANO_ATUAL}} · {{NOME_ARCANO}}</div>
+      <div class="body-txt" style="font-size:11.8px; margin-top:2px;">Vigora {{DATA_INICIO_ARCANO}} → {{DATA_FIM_ARCANO}}. {{INTERPRETACAO_ARCANO_ATUAL}}</div>
+    </div>
+  </div>
+  <div class="pagesub">{{nome_curto_cliente}} · mapa essencial</div>
+  <div class="pagenum">03</div>
+</div>
+
+<!-- ============================================== PAGE 4 — CICLOS ============================================== -->
+<div class="page">
+  <div class="tape lilac" style="top:12mm; right:24mm; transform:rotate(5deg);"></div>
+  <div class="headline-row" style="margin-top:6mm;">
+    <svg class="sigil" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="20" cy="20" r="2" fill="currentColor"/><line x1="20" y1="2" x2="20" y2="8" stroke="currentColor" stroke-width="1.2"/><line x1="20" y1="32" x2="20" y2="38" stroke="currentColor" stroke-width="1.2"/><line x1="2" y1="20" x2="8" y2="20" stroke="currentColor" stroke-width="1.2"/><line x1="32" y1="20" x2="38" y2="20" stroke="currentColor" stroke-width="1.2"/></svg>
+    <h1 class="page-title">o seu agora — e os ciclos que estão virando</h1>
+  </div>
+  <hr class="rule">
+
+  <div class="grid3">
+    <div class="card" style="text-align:center;">
+      <div class="label">Ano pessoal</div>
+      <div class="bignum">{{ANO_PESSOAL}}</div>
+      <div class="desc">{{TEMA_ANO_PESSOAL}}</div>
+    </div>
+    <div class="card" style="text-align:center;">
+      <div class="label">Mês pessoal</div>
+      <div class="bignum">{{MES_PESSOAL}}</div>
+      <div class="desc">{{TEMA_MES_PESSOAL}}</div>
+    </div>
+    <div class="card" style="text-align:center;">
+      <div class="label">Dia pessoal</div>
+      <div class="bignum">{{DIA_PESSOAL}}</div>
+      <div class="desc">{{TEMA_DIA_PESSOAL}}</div>
+    </div>
+  </div>
+
+  <div class="body-txt" style="margin-top:14px;">dias favoráveis do mês:
+    {{#each DIAS_FAVORAVEIS}}<span class="chip">{{this}}</span>{{/each}}
+  </div>
+
+  <h2 style="font-size:17px; margin-top:20px; color:var(--matcha-700);">ciclos de vida</h2>
+  <div class="timeline">
+    <div class="tl-item"><b>1º ciclo — número {{CICLO1_NUM}}</b> · {{CICLO1_PERIODO}} <br><span class="desc">{{CICLO1_TEMA}}</span></div>
+    <div class="tl-item"><b>2º ciclo — número {{CICLO2_NUM}}</b> · {{CICLO2_PERIODO}} <br><span class="desc">{{CICLO2_TEMA}}</span></div>
+    <div class="tl-item"><b>3º ciclo — número {{CICLO3_NUM}}</b> · {{CICLO3_PERIODO}} <br><span class="desc">{{CICLO3_TEMA}}</span></div>
+  </div>
+
+  <h2 style="font-size:17px; margin-top:10px; color:var(--matcha-700);">momentos decisivos</h2>
+  <div class="body-txt" style="line-height:2;">
+    1º: <b>{{MD1}}</b> ({{MD1_PERIODO}}) &nbsp;→&nbsp; 2º: <b>{{MD2}}</b> ({{MD2_PERIODO}}) &nbsp;→&nbsp; 3º: <b>{{MD3}}</b> ({{MD3_PERIODO}}) &nbsp;→&nbsp; 4º: <b>{{MD4}}</b> ({{MD4_PERIODO}})
+  </div>
+
+  <div class="callout" style="margin-top:14px;">
+    <div class="eyebrow">✦ repara nisso</div>
+    <p style="margin-top:6px;">{{INSIGHT_DE_TIMING — cruze ciclos, momentos decisivos, arcano atual e revolução solar para apontar uma janela específica de virada, se houver}}</p>
+  </div>
+  <div class="pagesub">{{nome_curto_cliente}} · ciclos e tempo</div>
+  <div class="pagenum">04</div>
+</div>
+
+<!-- ============================================== PAGE 5 — DESAFIOS / HARMONIA ============================================== -->
+<div class="page">
+  <div class="tape clay" style="top:12mm; left:22mm; transform:rotate(-4deg);"></div>
+  <div class="headline-row" style="margin-top:6mm;">
+    <svg class="sigil" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="20" cy="20" r="2" fill="currentColor"/><line x1="20" y1="2" x2="20" y2="8" stroke="currentColor" stroke-width="1.2"/><line x1="20" y1="32" x2="20" y2="38" stroke="currentColor" stroke-width="1.2"/><line x1="2" y1="20" x2="8" y2="20" stroke="currentColor" stroke-width="1.2"/><line x1="32" y1="20" x2="38" y2="20" stroke="currentColor" stroke-width="1.2"/></svg>
+    <h1 class="page-title">desafios, lições e com quem você combina</h1>
+  </div>
+  <hr class="rule">
+
+  <div class="grid3">
+    <div class="card" style="text-align:center;">
+      <div class="label">1º desafio</div><div class="bignum" style="font-size:26px;">{{DESAFIO1}}</div>
+      <div class="desc">{{TEMA_DESAFIO1}}</div>
+    </div>
+    <div class="card" style="text-align:center;">
+      <div class="label">2º desafio</div><div class="bignum" style="font-size:26px;">{{DESAFIO2}}</div>
+      <div class="desc">{{TEMA_DESAFIO2}}</div>
+    </div>
+    <div class="card" style="text-align:center;">
+      <div class="label">desafio principal</div><div class="bignum" style="font-size:26px;">{{DESAFIO_PRINCIPAL}}</div>
+      <div class="desc">{{TEMA_DESAFIO_PRINCIPAL}}</div>
+    </div>
+  </div>
+
+  <div class="grid2" style="margin-top:11px;">
+    <div class="card">
+      <div class="label">lições cármicas</div>
+      <div class="bignum" style="font-size:20px;">{{LICOES_CARMICAS}}</div>
+      <div class="desc">{{TEMA_LICOES_CARMICAS}}</div>
+    </div>
+    <div class="card">
+      <div class="label">dívidas cármicas</div>
+      <div class="bignum" style="font-size:20px;">{{DIVIDAS_CARMICAS}}</div>
+      <div class="desc">{{TEMA_DIVIDAS_CARMICAS}}</div>
+    </div>
+    <div class="card">
+      <div class="label">tendências ocultas</div>
+      <div class="body-txt" style="font-size:16px; font-family:'Fraunces',serif; color:var(--clay);">{{TENDENCIAS_OCULTAS}}</div>
+      <div class="desc">{{TEMA_TENDENCIAS_OCULTAS}}</div>
+    </div>
+    <div class="card">
+      <div class="label">resposta subconsciente</div>
+      <div class="bignum" style="font-size:20px;">{{RESPOSTA_SUBCONSCIENTE}}</div>
+      <div class="desc">{{TEMA_RESPOSTA_SUBCONSCIENTE}}</div>
+    </div>
+  </div>
+
+  <h2 style="font-size:16px; margin-top:18px; color:var(--matcha-700);">harmonia conjugal / vínculos</h2>
+  <div class="card accent-gold" style="background:var(--matcha-50);">
+    <div class="body-txt" style="line-height:2;">
+      💛 vibra em sintonia com: <b>{{HARMONIA_VIBRA}}</b><br>
+      🧲 atrai naturalmente: <b>{{HARMONIA_ATRAI}}</b><br>
+      ⚡ tensão / oposição com: <b>{{HARMONIA_OPOSTO}}</b><br>
+      🌊 é passivo(a), se adapta, com: <b>{{HARMONIA_PASSIVO}}</b>
+    </div>
+  </div>
+  <div class="desc" style="margin-top:7px;">números harmônicos gerais: <b>{{NUMEROS_HARMONICOS}}</b></div>
+  <div class="pagesub">{{nome_curto_cliente}} · desafios e harmonia</div>
+  <div class="pagenum">05</div>
+</div>
+
+<!-- ============================================== PAGE 6 — TRIÂNGULOS E ARCANOS ============================================== -->
+<div class="page">
+  <div class="tape gold" style="top:12mm; right:22mm; transform:rotate(4deg);"></div>
+  <div class="headline-row" style="margin-top:6mm;">
+    <svg class="sigil" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="20" cy="20" r="2" fill="currentColor"/><line x1="20" y1="2" x2="20" y2="8" stroke="currentColor" stroke-width="1.2"/><line x1="20" y1="32" x2="20" y2="38" stroke="currentColor" stroke-width="1.2"/><line x1="2" y1="20" x2="8" y2="20" stroke="currentColor" stroke-width="1.2"/><line x1="32" y1="20" x2="38" y2="20" stroke="currentColor" stroke-width="1.2"/></svg>
+    <h1 class="page-title">os triângulos — onde a energia se repete</h1>
+  </div>
+  <div class="eyebrow" style="margin:2px 0 8px 34px;">quando um número se repete 3x seguidas, é ponto de luz — energia concentrada, não diluída</div>
+  <hr class="rule">
+
+  <div class="grid2">
+    <div class="card accent">
+      <div class="label" style="color:var(--clay);">triângulo pessoal</div>
+      <div class="body-txt" style="font-family:'Fraunces',serif; font-style:italic; font-size:17px; margin:5px 0; color:var(--matcha-900);">{{TRIANGULO_PESSOAL_SEQ}}</div>
+      <div class="desc">{{INTERPRETACAO_TRIANGULO_PESSOAL — inclua os arcanos envolvidos e o antídoto de cada número repetido}}</div>
+    </div>
+    <div class="card accent-clay">
+      <div class="label" style="color:var(--clay);">triângulo da vida</div>
+      <div class="body-txt" style="font-family:'Fraunces',serif; font-style:italic; font-size:17px; margin:5px 0; color:var(--matcha-900);">{{TRIANGULO_VIDA_SEQ}}</div>
+      <div class="desc">{{INTERPRETACAO_TRIANGULO_VIDA}}</div>
+    </div>
+    <div class="card accent-gold">
+      <div class="label" style="color:var(--clay);">triângulo social</div>
+      <div class="body-txt" style="font-family:'Fraunces',serif; font-style:italic; font-size:17px; margin:5px 0; color:var(--matcha-900);">{{TRIANGULO_SOCIAL_SEQ}}</div>
+      <div class="desc">{{INTERPRETACAO_TRIANGULO_SOCIAL}}</div>
+    </div>
+    <div class="card accent">
+      <div class="label" style="color:var(--clay);">triângulo do destino</div>
+      <div class="body-txt" style="font-family:'Fraunces',serif; font-style:italic; font-size:17px; margin:5px 0; color:var(--matcha-900);">{{TRIANGULO_DESTINO_SEQ}}</div>
+      <div class="desc">{{INTERPRETACAO_TRIANGULO_DESTINO}}</div>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top:13px;">
+    <div class="eyebrow">✦ o padrão que salta aos olhos</div>
+    <p style="margin-top:5px;">{{PADRAO_TRANSVERSAL — números que se repetem entre os 4 triângulos e o que isso revela em conjunto}}</p>
+  </div>
+  <div class="pagesub">{{nome_curto_cliente}} · triângulos e arcanos</div>
+  <div class="pagenum">06</div>
+</div>
+
+<!-- ============================================== PAGE 7 [OPCIONAL — só se houver marca/empresa] — NUMEROLOGIA DA MARCA ============================================== -->
+<div class="page">
+  <div class="tape matcha" style="top:12mm; left:22mm; transform:rotate(-4deg);"></div>
+  <div class="headline-row" style="margin-top:6mm;">
+    <svg class="sigil" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="20" cy="20" r="2" fill="currentColor"/><line x1="20" y1="2" x2="20" y2="8" stroke="currentColor" stroke-width="1.2"/><line x1="20" y1="32" x2="20" y2="38" stroke="currentColor" stroke-width="1.2"/><line x1="2" y1="20" x2="8" y2="20" stroke="currentColor" stroke-width="1.2"/><line x1="32" y1="20" x2="38" y2="20" stroke="currentColor" stroke-width="1.2"/></svg>
+    <h1 class="page-title">a numerologia da marca — {{NOME_MARCA}}</h1>
+  </div>
+  <div class="eyebrow" style="margin:2px 0 8px 34px;">razão social "{{RAZAO_SOCIAL}}" + nome fantasia "{{NOME_FANTASIA}}"</div>
+  <hr class="rule">
+
+  <div class="grid3">
+    <div class="card accent">
+      <div class="label">Razão social · Motivação</div>
+      <div class="bignum">{{RS_MOTIVACAO}} <span style="font-size:13px; color:var(--ink-soft); font-style:normal;">({{RS_MOTIVACAO_SOMA}})</span></div>
+      <div class="desc">{{INTERPRETACAO_RS_MOTIVACAO}}</div>
+    </div>
+    <div class="card accent-clay">
+      <div class="label">Razão social · Impressão</div>
+      <div class="bignum">{{RS_IMPRESSAO}} <span style="font-size:13px; color:var(--ink-soft); font-style:normal;">({{RS_IMPRESSAO_SOMA}})</span></div>
+      <div class="desc">{{INTERPRETACAO_RS_IMPRESSAO}}</div>
+    </div>
+    <div class="card accent-gold">
+      <div class="label">Razão social · Expressão</div>
+      <div class="bignum">{{RS_EXPRESSAO}} <span style="font-size:13px; color:var(--ink-soft); font-style:normal;">({{RS_EXPRESSAO_SOMA}})</span></div>
+      <div class="desc">{{INTERPRETACAO_RS_EXPRESSAO}}</div>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top:12px;">
+    <div class="eyebrow">✦ leitura de conjunto</div>
+    <p style="margin-top:5px;">{{OBSERVACAO_PADRAO_RAZAO_SOCIAL — ex: números repetidos, tensão entre missão social e comercial, etc.}}</p>
+  </div>
+
+  <div class="grid3" style="margin-top:14px;">
+    <div class="card">
+      <div class="label">Nome fantasia · Motivação</div>
+      <div class="bignum" style="font-size:26px;">{{NF_MOTIVACAO}}</div>
+      <div class="desc">{{INTERPRETACAO_NF_MOTIVACAO}}</div>
+    </div>
+    <div class="card">
+      <div class="label">Nome fantasia · Impressão</div>
+      <div class="bignum" style="font-size:26px;">{{NF_IMPRESSAO}}</div>
+      <div class="desc">{{INTERPRETACAO_NF_IMPRESSAO}}</div>
+    </div>
+    <div class="card">
+      <div class="label">Nome fantasia · Expressão</div>
+      <div class="bignum" style="font-size:26px;">{{NF_EXPRESSAO}}</div>
+      <div class="desc">{{INTERPRETACAO_NF_EXPRESSAO}}</div>
+    </div>
+  </div>
+
+  <div class="body-txt" style="margin-top:14px;">{{SINTESE_NOME_FANTASIA — como os 3 números combinam}}</div>
+
+  <div class="grid2" style="margin-top:14px;">
+    <div class="card tinted">
+      <div class="label">Destino da empresa</div>
+      <div class="bignum" style="font-size:24px;">{{EMPRESA_DESTINO}}</div>
+      <div class="desc">{{INTERPRETACAO_EMPRESA_DESTINO}}</div>
+    </div>
+    <div class="card tinted">
+      <div class="label">Ciclo de vida atual</div>
+      <div class="bignum" style="font-size:24px;">{{EMPRESA_CICLO}}</div>
+      <div class="desc">{{INTERPRETACAO_EMPRESA_CICLO}}</div>
+    </div>
+    <div class="card tinted-clay">
+      <div class="label">Desafio</div>
+      <div class="bignum" style="font-size:24px;">{{EMPRESA_DESAFIO}}</div>
+      <div class="desc">{{INTERPRETACAO_EMPRESA_DESAFIO}}</div>
+    </div>
+    <div class="card tinted-clay">
+      <div class="label">Momento decisivo</div>
+      <div class="bignum" style="font-size:24px;">{{EMPRESA_MOMENTO_DECISIVO}}</div>
+      <div class="desc">{{INTERPRETACAO_EMPRESA_MOMENTO_DECISIVO}}</div>
+    </div>
+  </div>
+  <div class="pagesub">{{nome_curto_cliente}} · numerologia da marca</div>
+  <div class="pagenum">07</div>
+</div>
+
+<!-- ============================================== PAGE 8 [OPCIONAL] — LABORATÓRIO DE NOMES ============================================== -->
+<div class="page">
+  <div class="tape lilac" style="top:12mm; left:22mm; transform:rotate(-4deg);"></div>
+  <div class="headline-row" style="margin-top:6mm;">
+    <svg class="sigil" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="20" cy="20" r="2" fill="currentColor"/><line x1="20" y1="2" x2="20" y2="8" stroke="currentColor" stroke-width="1.2"/><line x1="20" y1="32" x2="20" y2="38" stroke="currentColor" stroke-width="1.2"/><line x1="2" y1="20" x2="8" y2="20" stroke="currentColor" stroke-width="1.2"/><line x1="32" y1="20" x2="38" y2="20" stroke="currentColor" stroke-width="1.2"/></svg>
+    <h1 class="page-title">laboratório de nomes — tudo que testamos</h1>
+  </div>
+  <div class="eyebrow" style="margin:2px 0 8px 34px;">forma é conteúdo: cada variação muda a vibração do nome mesmo mudando pouco na escrita</div>
+  <hr class="rule">
+
+  <table class="rep">
+    <tr><th>versão testada</th><th>tipo</th><th>expr.</th><th>arcano</th><th>leitura rápida</th></tr>
+    {{#each VERSOES_DE_NOME}}
+    <tr><td><b>{{nome}}</b></td><td>{{tipo}}</td><td>{{expressao}}</td><td>{{arcano}}</td><td>{{leitura}}</td></tr>
+    {{/each}}
+  </table>
+
+  <div class="callout" style="margin-top:16px;">
+    <div class="eyebrow">✦ o achado mais forte da rodada</div>
+    <p style="margin-top:5px;">{{DESTAQUE_DO_LAB — qual versão se destacou e por quê}}</p>
+  </div>
+
+  <div class="card accent" style="margin-top:14px;">
+    <div class="script" style="font-size:16px; color:var(--matcha-700);">✦ um fio que amarra tudo:</div>
+    <div class="body-txt" style="margin-top:5px;">{{PADRAO_ENTRE_VERSOES — coincidências numéricas entre variações independentes}}</div>
+  </div>
+  <div class="pagesub">{{nome_curto_cliente}} · laboratório de nomes</div>
+  <div class="pagenum">08</div>
+</div>
+
+<!-- ============================================== PAGE 9 [OPCIONAL] — IDENTIDADE RECOMENDADA ============================================== -->
+<div class="page">
+  <div class="tape gold" style="top:12mm; right:24mm; transform:rotate(5deg);"></div>
+  <div class="headline-row" style="margin-top:6mm;">
+    <svg class="sigil" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="20" cy="20" r="2" fill="currentColor"/><line x1="20" y1="2" x2="20" y2="8" stroke="currentColor" stroke-width="1.2"/><line x1="20" y1="32" x2="20" y2="38" stroke="currentColor" stroke-width="1.2"/><line x1="2" y1="20" x2="8" y2="20" stroke="currentColor" stroke-width="1.2"/><line x1="32" y1="20" x2="38" y2="20" stroke="currentColor" stroke-width="1.2"/></svg>
+    <h1 class="page-title">a identidade que eu recomendo</h1>
+  </div>
+  <div class="eyebrow" style="margin:2px 0 8px 34px;">{{CONTEXTO_DA_RECOMENDACAO}}</div>
+  <hr class="rule">
+
+  <div class="card" style="padding:18px 22px;">
+    <div class="body-txt">{{JUSTIFICATIVA_GERAL_DA_ESTRATEGIA}}</div>
+  </div>
+
+  <div class="grid2" style="margin-top:14px;">
+    <div class="card accent-gold" style="text-align:center;">
+      <div class="label" style="color:var(--clay);">assinatura pública — a mais recomendada</div>
+      <div class="display display-italic" style="font-size:28px; margin:6px 0; color:var(--matcha-900);">{{NOME_RECOMENDADO_1}}</div>
+      <div class="chip gold">{{DESTAQUE_NUMEROLOGICO_1}}</div>
+      <div class="desc">{{POR_QUE_1}}</div>
+    </div>
+    <div class="card accent" style="text-align:center;">
+      <div class="label" style="color:var(--clay);">nome institucional</div>
+      <div class="display display-italic" style="font-size:28px; margin:6px 0; color:var(--matcha-900);">{{NOME_RECOMENDADO_2}}</div>
+      <div class="chip">{{DESTAQUE_NUMEROLOGICO_2}}</div>
+      <div class="desc">{{POR_QUE_2}}</div>
+    </div>
+  </div>
+
+  <div class="grid2" style="margin-top:11px;">
+    <div class="card accent-clay" style="text-align:center;">
+      <div class="label" style="color:var(--clay);">marca / produto</div>
+      <div class="display display-italic" style="font-size:24px; margin:6px 0; color:var(--matcha-900);">{{NOME_RECOMENDADO_3}}</div>
+      <div class="chip clay">{{DESTAQUE_NUMEROLOGICO_3}}</div>
+      <div class="desc">{{POR_QUE_3}}</div>
+    </div>
+    <div class="card" style="text-align:center;">
+      <div class="label" style="color:var(--clay);">pessoa / bastidor</div>
+      <div class="display display-italic" style="font-size:24px; margin:6px 0; color:var(--matcha-900);">{{NOME_RECOMENDADO_4}}</div>
+      <div class="chip">{{DESTAQUE_NUMEROLOGICO_4}}</div>
+      <div class="desc">{{POR_QUE_4}}</div>
+    </div>
+  </div>
+
+  <div class="card tinted" style="margin-top:14px;">
+    <div class="script" style="font-size:16px; color:var(--matcha-700);">⚠ um cuidado:</div>
+    <div class="desc" style="font-size:12px;">{{RESSALVAS — variações a evitar por ora ou guardar para depois}}</div>
+  </div>
+  <div class="pagesub">{{nome_curto_cliente}} · identidade recomendada</div>
+  <div class="pagenum">09</div>
+</div>
+
+<!-- ============================================== PAGE 10 — MAPA ASTRAL: PANORAMA ============================================== -->
+<div class="page">
+  <div class="tape lilac" style="top:12mm; left:50%; margin-left:-54px; transform:rotate(-3deg);"></div>
+  <div class="headline-row" style="margin-top:6mm;">
+    <svg class="sigil" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="20" cy="20" r="8" fill="none" stroke="currentColor" stroke-width="1"/><circle cx="20" cy="20" r="1.6" fill="currentColor"/></svg>
+    <h1 class="page-title">o mapa astral — panorama de nascimento</h1>
+  </div>
+  <div class="eyebrow" style="margin:2px 0 8px 34px;">{{DATA_HORA_LOCAL_NASCIMENTO}} · Sol {{SIGNO_SOLAR}} · Ascendente {{SIGNO_ASC}} · MC {{SIGNO_MC}}</div>
+  <hr class="rule">
+
+  <p>Agora saindo da numerologia e entrando na astrologia: seu mapa natal é lido por casas (áreas da vida) e por planetas
+  (funções psíquicas) posicionados em signos (o "como"). Abaixo, o panorama completo — depois vamos abrir cada camada.</p>
+
+  <table class="rep" style="margin-top:12px;">
+    <tr><th>planeta / ponto</th><th>signo</th><th>grau</th><th>casa</th><th>palavra-chave</th></tr>
+    {{#each PLANETAS_NATAIS}}
+    <tr><td><span class="planet-glyph">{{glifo}}</span>{{planeta}}</td><td>{{signo}}</td><td>{{grau}}</td><td class="mono">{{casa}}</td><td>{{palavra_chave}}</td></tr>
+    {{/each}}
+  </table>
+
+  <div class="grid2" style="margin-top:12px;">
+    <div class="card tinted">
+      <div class="label">Ascendente</div>
+      <div class="bignum" style="font-size:22px;">{{SIGNO_ASC}} {{GRAU_ASC}}</div>
+      <div class="desc">{{INTERPRETACAO_ASCENDENTE}}</div>
+    </div>
+    <div class="card tinted-clay">
+      <div class="label">Meio do Céu (MC)</div>
+      <div class="bignum" style="font-size:22px;">{{SIGNO_MC}} {{GRAU_MC}}</div>
+      <div class="desc">{{INTERPRETACAO_MC}}</div>
+    </div>
+  </div>
+  <div class="pagesub">{{nome_curto_cliente}} · mapa astral · panorama</div>
+  <div class="pagenum">10</div>
+</div>
+
+<!-- ============================================== PAGE 11 — MAPA ASTRAL: CASAS ============================================== -->
+<div class="page">
+  <div class="tape lilac" style="top:12mm; right:22mm; transform:rotate(4deg);"></div>
+  <div class="headline-row" style="margin-top:6mm;">
+    <svg class="sigil" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="20" cy="20" r="8" fill="none" stroke="currentColor" stroke-width="1"/><circle cx="20" cy="20" r="1.6" fill="currentColor"/></svg>
+    <h1 class="page-title">mapa astral — potenciais e dificuldades por casa</h1>
+  </div>
+  <hr class="rule">
+
+  {{#each CLUSTERS_DE_CASA}}
+  <div class="card {{classe_accent}}" style="margin-top:11px;">
+    <div class="label" style="color:{{cor_label}};">Casa {{casa}} · {{titulo_do_cluster}}</div>
+    <div class="desc" style="font-size:12.3px; margin-top:5px;"><b>Potencial:</b> {{potencial}} <b>Dificuldade:</b> {{dificuldade}}</div>
+  </div>
+  {{/each}}
+  <div class="pagesub">{{nome_curto_cliente}} · mapa astral · casas</div>
+  <div class="pagenum">11</div>
+</div>
+
+<!-- ============================================== PAGE 12 — MAPA ASTRAL: SÍNTESE ============================================== -->
+<div class="page">
+  <div class="tape gold" style="top:12mm; left:22mm; transform:rotate(-5deg);"></div>
+  <div class="headline-row" style="margin-top:6mm;">
+    <svg class="sigil" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="20" cy="20" r="8" fill="none" stroke="currentColor" stroke-width="1"/><circle cx="20" cy="20" r="1.6" fill="currentColor"/></svg>
+    <h1 class="page-title">síntese astrológica — a leitura de conjunto</h1>
+  </div>
+  <hr class="rule">
+
+  <div class="card accent" style="padding:18px 22px;">
+    <div class="body-txt">{{LEITURA_SOL_ASCENDENTE — o arquétipo central que nasce do combo Sol + Ascendente}}</div>
+  </div>
+
+  <div class="body-txt" style="margin-top:13px;">{{PADRAO_DE_CASAS — onde os planetas se concentram e o que isso diz sobre vida interior vs. vida pública}}</div>
+
+  <div class="callout" style="margin-top:14px;">
+    <div class="eyebrow">✦ onde astrologia e numerologia se apertam as mãos</div>
+    <p style="margin-top:5px;">{{PONTES_NUM_ASTRO — cruzamentos específicos entre destino/missão numerológicos e planetas/casas natais}}</p>
+  </div>
+
+  <div class="body-txt" style="margin-top:13px;">{{APLICACAO_PRATICA — como isso se traduz em decisões de marca/carreira/vida}}</div>
+  <div class="pagesub">{{nome_curto_cliente}} · mapa astral · síntese</div>
+  <div class="pagenum">12</div>
+</div>
+
+<!-- ============================================== PAGE 13 — REVOLUÇÃO SOLAR: PANORAMA ============================================== -->
+<div class="page">
+  <div class="tape clay" style="top:12mm; left:50%; margin-left:-54px; transform:rotate(-2deg);"></div>
+  <div class="headline-row" style="margin-top:6mm;">
+    <svg class="sigil" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M20 6 A14 14 0 0 1 20 34" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
+    <h1 class="page-title">revolução solar {{ANO_RS}} — o retrato do seu ano</h1>
+  </div>
+  <div class="eyebrow" style="margin:2px 0 8px 34px;">o momento exato em que o Sol retorna ao seu grau natal ({{GRAU_SOL_NATAL}}) — o "mapa do ano", válido de aniversário a aniversário</div>
+  <hr class="rule">
+
+  <p>Uma revolução solar é lida como um mapa independente, mas sempre em diálogo com o mapa natal: os planetas que se agrupam por casa
+  mostram onde a energia do ano vai se concentrar.</p>
+
+  <table class="rep" style="margin-top:12px;">
+    <tr><th>planeta / ponto</th><th>signo</th><th>grau</th><th>casa RS</th><th>tema do ano</th></tr>
+    {{#each PLANETAS_RS}}
+    <tr><td><span class="planet-glyph">{{glifo}}</span>{{planeta}}</td><td>{{signo}}</td><td>{{grau}}</td><td class="mono">{{casa}}</td><td>{{tema}}</td></tr>
+    {{/each}}
+  </table>
+
+  <div class="grid2" style="margin-top:12px;">
+    <div class="card tinted">
+      <div class="label">Ascendente da RS</div>
+      <div class="bignum" style="font-size:20px;">{{SIGNO_ASC_RS}} {{GRAU_ASC_RS}}</div>
+      <div class="desc">{{INTERPRETACAO_ASC_RS — tom geral do ano}}</div>
+    </div>
+    <div class="card tinted-clay">
+      <div class="label">Meio do Céu da RS</div>
+      <div class="bignum" style="font-size:20px;">{{SIGNO_MC_RS}} {{GRAU_MC_RS}}</div>
+      <div class="desc">{{INTERPRETACAO_MC_RS — vocação do ano}}</div>
+    </div>
+  </div>
+  <div class="pagesub">{{nome_curto_cliente}} · revolução solar {{ANO_RS}} · panorama</div>
+  <div class="pagenum">13</div>
+</div>
+
+<!-- ============================================== PAGE 14 — REVOLUÇÃO SOLAR: LEITURA PROFISSIONAL ============================================== -->
+<div class="page">
+  <div class="tape clay" style="top:12mm; right:22mm; transform:rotate(4deg);"></div>
+  <div class="headline-row" style="margin-top:6mm;">
+    <svg class="sigil" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M20 6 A14 14 0 0 1 20 34" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
+    <h1 class="page-title">revolução solar {{ANO_RS}} — leitura profissional</h1>
+  </div>
+  <hr class="rule">
+
+  {{#each CLUSTERS_RS}}
+  <div class="card {{classe_accent}}" style="margin-top:11px;">
+    <div class="label" style="color:{{cor_label}};">Casa {{casa}} — {{titulo_do_cluster}}</div>
+    <div class="desc" style="font-size:12.3px; margin-top:5px;">{{interpretacao}}</div>
+  </div>
+  {{/each}}
+
+  <div class="callout" style="margin-top:13px;">
+    <div class="eyebrow">✦ leitura de conjunto do ano</div>
+    <p style="margin-top:5px;">{{SINTESE_DO_ANO — amarre as casas mais carregadas com o tema central do ano, e cruze com o timing numerológico (arcano/ciclo) se houver coincidência de calendário}}</p>
+  </div>
+  <div class="pagesub">{{nome_curto_cliente}} · revolução solar {{ANO_RS}} · leitura</div>
+  <div class="pagenum">14</div>
+</div>
+
+<!-- ============================================== PAGE 15 — SÍNTESE FINAL / CARTA ============================================== -->
+<div class="page">
+  <div class="tape matcha" style="top:14mm; left:50%; margin-left:-54px; transform:rotate(-2deg);"></div>
+  <h1 class="page-title display-italic" style="font-size:28px; margin-top:16mm; text-align:center;">pra fechar ✦</h1>
+  <hr class="rule full" style="width:60%; margin:14px auto 20px auto;">
+
+  <div class="card" style="padding:26px 30px; margin-top:6px;">
+    <p>{{SINTESE_FINAL_PARTE_1 — amarre numerologia (destino/missão) com astrologia (sol/ascendente) num único parágrafo}}</p>
+    <br>
+    <p>{{SINTESE_FINAL_PARTE_2 — mensagem de encerramento + lembrete de que os mapas são espelhos simbólicos, não roteiros fechados}}</p>
+  </div>
+
+  <div style="text-align:center; margin-top:34px;">
+    <div class="script" style="font-size:20px;">{{FRASE_DE_DESPEDIDA}}</div>
+    <div class="display display-italic" style="font-size:21px; margin-top:8px; color:var(--clay);">sua amiga de numerologia cabalística &amp; leitura astrológica</div>
+  </div>
+
+  <div class="footer-note">— dossiê elaborado com base nos dados de nascimento{{, testes de nome — remova se não houver}} e mapa astral fornecidos pela cliente —</div>
+</div>
+
+</body>
+</html>

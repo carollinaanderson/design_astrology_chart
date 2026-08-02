@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Thais Antunes dos Santos Pereira — Numerologia & Astrologia</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600;700&family=Caveat:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+:root{
+  --cream:#f5f1e6;
+  --paper:#fbf9f2;
+  --matcha-50:#eef1e0;
+  --matcha-100:#e0e7cb;
+  --matcha-300:#b3c48c;
+  --matcha-500:#7c9358;
+  --matcha-700:#495a34;
+  --matcha-900:#252e1b;
+  --clay:#bf7952;
+  --clay-soft:#e9c8ae;
+  --gold:#b28a3f;
+  --lilac:#8878ab;
+  --rose:#c08b92;
+  --ink:#2a281f;
+  --ink-soft:#655f4d;
+  --line: rgba(37,46,27,0.18);
+}
+
+*{box-sizing:border-box; margin:0; padding:0;}
+body{font-family:'Inter',sans-serif; color:var(--ink); background:#d9d2bd;}
+
+.page{
+  width:210mm; min-height:297mm; position:relative;
+  padding:20mm 20mm 24mm 20mm; overflow:hidden;
+  background-color:var(--cream);
+  background-image:
+    radial-gradient(circle at 12% 8%, rgba(255,255,255,.5) 0%, transparent 38%),
+    radial-gradient(circle at 92% 95%, rgba(37,46,27,.05) 0%, transparent 42%);
+  page-break-after: always;
+}
+.page:last-child{ page-break-after:auto; }
+
+/* ---------- typography ---------- */
+h1,h2,h3,.display{ font-family:'Fraunces', serif; color:var(--matcha-900); font-weight:600; }
+.display-italic{ font-style:italic; font-weight:500; }
+.script{ font-family:'Caveat', cursive; color:var(--clay); }
+.eyebrow{ font-family:'Space Mono', monospace; font-size:10.5px; letter-spacing:2.2px; text-transform:uppercase; color:var(--gold); }
+.mono{ font-family:'Space Mono', monospace; }
+p, .body-txt{ font-size:13.3px; line-height:1.72; color:var(--ink); }
+.soft{ color:var(--ink-soft); }
+
+/* ---------- structural devices ---------- */
+.sigil{ width:30px; height:30px; color:var(--matcha-700); flex:none; }
+.headline-row{ display:flex; align-items:center; gap:12px; margin-bottom:2px; }
+.page-title{ font-size:25px; line-height:1.22; }
+.rule{ border:none; height:1px; background:linear-gradient(90deg, var(--gold), transparent 75%); margin:12px 0 18px 0; }
+.rule.full{ background:var(--line); }
+
+.tape{ position:absolute; height:22px; width:108px; opacity:.9; box-shadow:0 1px 3px rgba(0,0,0,.18); }
+.tape.matcha{ background:repeating-linear-gradient(45deg,var(--matcha-500),var(--matcha-500) 7px,var(--matcha-300) 7px,var(--matcha-300) 14px); }
+.tape.clay{ background:repeating-linear-gradient(45deg,var(--clay),var(--clay) 7px,var(--clay-soft) 7px,var(--clay-soft) 14px); }
+.tape.gold{ background:repeating-linear-gradient(45deg,var(--gold),var(--gold) 7px,#e3cf9c 7px,#e3cf9c 14px); }
+.tape.lilac{ background:repeating-linear-gradient(45deg,var(--lilac),var(--lilac) 7px,#cfc6e2 7px,#cfc6e2 14px); }
+
+.seal{ width:118px; height:118px; border:1.3px solid var(--matcha-700); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto; position:relative; }
+.seal::before{ content:''; position:absolute; inset:8px; border:1px solid var(--gold); border-radius:50%; }
+.seal .seal-txt{ font-family:'Space Mono',monospace; font-size:8.5px; letter-spacing:1.5px; text-transform:uppercase; color:var(--matcha-700); text-align:center; line-height:1.5; }
+
+.card{
+  background:var(--paper); border:1px solid var(--line);
+  box-shadow:0 3px 16px rgba(37,46,27,.07);
+  padding:14px 17px; position:relative; border-radius:3px;
+}
+.card.accent{ border-left:3px solid var(--matcha-500); }
+.card.accent-clay{ border-left:3px solid var(--clay); }
+.card.accent-gold{ border-left:3px solid var(--gold); }
+.card.accent-lilac{ border-left:3px solid var(--lilac); }
+.card.tinted{ background:var(--matcha-50); }
+.card.tinted-clay{ background:#f3e4d6; }
+
+.grid3{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:11px; }
+.grid2{ display:grid; grid-template-columns:1fr 1fr; gap:11px; }
+
+.bignum{ font-family:'Fraunces',serif; font-weight:700; font-style:italic; font-size:34px; color:var(--clay); line-height:1; }
+.label{ font-family:'Space Mono',monospace; font-size:10px; color:var(--matcha-700); letter-spacing:1px; text-transform:uppercase; }
+.desc{ font-family:'Inter',sans-serif; font-size:12px; color:var(--ink-soft); margin-top:5px; line-height:1.55; }
+
+.chip{ display:inline-block; background:var(--matcha-100); color:var(--matcha-900); border-radius:3px; padding:2px 9px; font-family:'Space Mono',monospace; font-size:10.5px; margin:2px 3px 2px 0; }
+.chip.clay{ background:var(--clay-soft); color:#5c3a24; }
+.chip.gold{ background:#ecdcb3; color:#5c4415; }
+
+.timeline{ position:relative; margin:18px 0; padding-left:14px; border-left:1.4px solid var(--matcha-300); }
+.tl-item{ position:relative; margin-bottom:16px; padding-left:16px; }
+.tl-item::before{ content:'✦'; position:absolute; left:-24px; top:-1px; color:var(--gold); font-size:12px; }
+
+table.rep{ width:100%; border-collapse:collapse; font-size:11.6px; }
+table.rep th{ font-family:'Space Mono',monospace; font-size:9.5px; text-transform:uppercase; letter-spacing:.6px; color:var(--matcha-700); text-align:left; padding:6px 7px; border-bottom:1.4px solid var(--matcha-500); }
+table.rep td{ padding:7px; border-bottom:1px solid var(--line); vertical-align:top; }
+table.rep tr:nth-child(even) td{ background:rgba(124,147,88,.05); }
+
+.footer-note{ position:absolute; bottom:11mm; left:20mm; right:20mm; font-family:'Caveat',cursive; font-size:14px; color:var(--ink-soft); text-align:center; }
+.pagenum{ position:absolute; bottom:9mm; right:16mm; font-family:'Space Mono',monospace; font-size:10px; color:var(--ink-soft); }
+.pagesub{ position:absolute; bottom:9mm; left:20mm; font-family:'Space Mono',monospace; font-size:9px; color:var(--ink-soft); letter-spacing:1px; text-transform:uppercase; }
+
+.planet-glyph{ font-size:15px; color:var(--matcha-700); width:20px; display:inline-block; }
+.zbadge{ font-family:'Space Mono',monospace; font-size:10px; background:var(--matcha-900); color:var(--cream); border-radius:10px; padding:1px 8px; }
+
+.callout{ background:var(--matcha-900); color:var(--cream); padding:16px 20px; border-radius:3px; }
+.callout .eyebrow{ color:var(--matcha-300); }
+.callout p{ color:#f0ecdd; }
+</style>
+</head>
+<body>
+
+<!-- =========================================================== PAGE 1 — CAPA =========================================================== -->
+<div class="page">
+  <div class="tape clay" style="top:16mm; left:22mm; transform:rotate(-7deg);"></div>
+  <div class="tape matcha" style="top:14mm; right:24mm; transform:rotate(6deg);"></div>
+
+  <div style="text-align:center; margin-top:34mm;">
+    <div class="seal">
+      <div class="seal-txt">dossiê pessoal<br>★<br>num. & astro.</div>
+    </div>
+  </div>
+
+  <div style="text-align:center; margin-top:20mm;">
+    <div class="eyebrow">um mapa cabalístico · um mapa astral · um laboratório de nomes, para</div>
+    <div class="display display-italic" style="font-size:46px; margin-top:12px; color:var(--matcha-900);">Thais Antunes<br>dos Santos Pereira</div>
+    <div class="script" style="font-size:21px; margin-top:16px;">→ em busca de um nome — e de uma leitura completa — à altura do que ela está construindo</div>
+  </div>
+
+  <div class="card accent" style="width:74%; margin:16mm auto 0 auto; padding:16px 22px;">
+    <div class="body-txt" style="line-height:1.9;">
+      <b>Nascimento:</b> 08/11/1996, 4h35 · São Paulo, SP &nbsp;·&nbsp; <b>Sol em Escorpião</b> · <b>Ascendente em Libra</b><br>
+      <b>Arcano cabalístico atual:</b> 65 &nbsp;·&nbsp; vigência 28/06/2023 → 26/10/2026<br>
+      <b>Condição da personalidade:</b> estágio em ascensão ↗
+    </div>
+  </div>
+
+  <div style="text-align:center; margin-top:22mm;">
+    <div class="script" style="font-size:17px; color:var(--ink-soft);">elaborado com números, arcanos e mapa do céu, pela sua</div>
+    <div class="display" style="font-size:20px; margin-top:4px; color:var(--matcha-700);">amiga de numerologia cabalística &amp; leitura astrológica</div>
+    <div class="mono soft" style="font-size:10.5px; margin-top:8px; letter-spacing:.5px;">— lendo números, arcanos, nomes e céus de nascimento —</div>
+  </div>
+</div>
+
+<!-- =========================================================== PAGE 2 — CARTA DE ABERTURA =========================================================== -->
+<div class="page">
+  <div class="tape gold" style="top:12mm; left:50%; margin-left:-54px; transform:rotate(-2deg);"></div>
+  <div class="headline-row" style="margin-top:14mm;">
+    <svg class="sigil" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="20" cy="20" r="2" fill="currentColor"/><line x1="20" y1="2" x2="20" y2="8" stroke="currentColor" stroke-width="1.2"/><line x1="20" y1="32" x2="20" y2="38" stroke="currentColor" stroke-width="1.2"/><line x1="2" y1="20" x2="8" y2="20" stroke="currentColor" stroke-width="1.2"/><line x1="32" y1="20" x2="38" y2="20" stroke="currentColor" stroke-width="1.2"/></svg>
+    <h1 class="page-title">antes de tudo, uma carta ✎</h1>
+  </div>
+  <hr class="rule">
+
+  <div class="card" style="padding:22px 26px; margin-top:6px;">
+    <p>Oi, Thais (ou Camila, ou Cá — a gente já vai chegar lá).</p><br>
+    <p>Passei os últimos dias com o seu mapa de nascimento numerológico aberto na mesa, seus triângulos rabiscados
+    do lado, o seu mapa astral projetado — e testei, junto com você, todas as variações de nome e assinatura que
+    trouxe: Camila Arizona, CArizona, ÁR'Z, Cá. Cada uma conta um pedacinho diferente da história que você quer
+    contar pro mundo.</p><br>
+    <p>Esse dossiê reúne tudo: o seu mapa numerológico pessoal (o que você já é, de fábrica), a numerologia da
+    <b>Cool Mint</b>, a leitura completa do seu <b>mapa astral de nascimento</b>, a interpretação da sua
+    <b>revolução solar 2026</b> — e, no fim, a recomendação de identidade para uma comunicadora que está prestes a
+    colocar duas marcas de óculos e moda no mapa nacional e, depois, global.</p><br>
+    <p class="script" style="font-size:18px;">Spoiler: os números e os astros concordam com você. 2025–2026 já é,
+    nos dois mapas, a virada. A pergunta não é <i>se</i> é hora — é <i>qual forma</i> vai carregar o que vem depois.</p><br>
+    <p>Vamos com calma, uma página de cada vez. Pega um chá — de preferência matcha.</p>
+  </div>
+
+  <div style="text-align:right; margin-top:22px;">
+    <div class="script" style="font-size:19px;">com carinho, uns bons 40 anos de prática numerológica e o céu do dia em que você nasceu,</div>
+    <div class="display" style="font-size:17px; margin-top:4px; color:var(--clay);">sua amiga</div>
+  </div>
+  <div class="pagesub">thais · dossiê pessoal</div>
+  <div class="pagenum">02</div>
+</div>
+
+<!-- =========================================================== PAGE 3 — MAPA ESSENCIAL =========================================================== -->
+<div class="page">
+  <div class="tape matcha" style="top:12mm; left:22mm; transform:rotate(-5deg);"></div>
+  <div class="headline-row" style="margin-top:6mm;">
+    <svg class="sigil" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="20" cy="20" r="2" fill="currentColor"/><line x1="20" y1="2" x2="20" y2="8" stroke="currentColor" stroke-width="1.2"/><line x1="20" y1="32" x2="20" y2="38" stroke="currentColor" stroke-width="1.2"/><line x1="2" y1="20" x2="8" y2="20" stroke="currentColor" stroke-width="1.2"/><line x1="32" y1="20" x2="38" y2="20" stroke="currentColor" stroke-width="1.2"/></svg>
+    <h1 class="page-title">seu mapa essencial — o que vem de fábrica</h1>
+  </div>
+  <div class="eyebrow" style="margin:2px 0 8px 34px;">calculado a partir de "Thais Antunes dos Santos Pereira" + 08/11/1996</div>
+  <hr class="rule">
+
+  <div class="grid3" style="margin-top:4px;">
+    <div class="card accent">
+      <div class="label">Motivação (nº da alma)</div>
+      <div class="bignum">5 <span style="font-size:14px; color:var(--ink-soft); font-style:normal;">(41)</span></div>
+      <div class="desc">O que te move por dentro: liberdade, variedade, curiosidade por vidas diferentes da sua, percepção arguta e recusa a ficar parada. O risco é a dispersão — motivação 5 precisa aprender a terminar o que começa.</div>
+    </div>
+    <div class="card accent-clay">
+      <div class="label">Impressão (personalidade)</div>
+      <div class="bignum">9 <span style="font-size:14px; color:var(--ink-soft); font-style:normal;">(63)</span></div>
+      <div class="desc">A primeira impressão que você deixa: alcance quase universal, sabedoria, magnetismo, compreensão. As pessoas confiam antes mesmo de te conhecer direito — e por isso mesmo, cuidado com a tendência a monopolizar atenção quando não desenvolvida.</div>
+    </div>
+    <div class="card accent-gold">
+      <div class="label">Expressão (nº do nome)</div>
+      <div class="bignum">5 <span style="font-size:14px; color:var(--ink-soft); font-style:normal;">(104)</span></div>
+      <div class="desc">O jeito que você entrega o que é: comunicação, versatilidade, várias frentes ao mesmo tempo, talento para vendas e persuasão. Detesta rotina e ordens — funciona melhor com liberdade de expressão.</div>
+    </div>
+    <div class="card accent">
+      <div class="label">Destino (caminho de vida)</div>
+      <div class="bignum">8 <span style="font-size:14px; color:var(--ink-soft); font-style:normal;">(35)</span></div>
+      <div class="desc">A estrada pavimentada: poder pessoal, negócios, magnetismo material, senso executivo. Deve cultivar diplomacia e paciência para não parecer fria ou autoritária no comando.</div>
+    </div>
+    <div class="card accent-clay">
+      <div class="label">Missão</div>
+      <div class="bignum">4 <span style="font-size:14px; color:var(--ink-soft); font-style:normal;">(13)</span></div>
+      <div class="desc">O recado que você veio deixar: dar estrutura e forma sólida a ideias soltas. Construir algo perene, tangível — não só sonhar com ele.</div>
+    </div>
+    <div class="card accent-gold">
+      <div class="label">Talento oculto</div>
+      <div class="bignum">1</div>
+      <div class="desc">O dom que ninguém te ensinou: abrir caminho onde ainda não existe caminho — liderança pioneira, iniciativa nata.</div>
+    </div>
+  </div>
+
+  <div class="grid2" style="margin-top:12px;">
+    <div class="card tinted">
+      <div class="label">Número psíquico</div>
+      <div class="bignum" style="font-size:26px;">8</div>
+      <div class="desc">Sua reação no piloto automático, antes de pensar: assumir o controle da situação.</div>
+    </div>
+    <div class="card tinted">
+      <div class="label">Arcano atual — 65 · O Rei de Ouros</div>
+      <div class="body-txt" style="font-size:11.8px; margin-top:2px;">Vigora 28/06/2023 → 26/10/2026. Simboliza realização e estabilidade alcançadas por trabalho honesto e ético; sucesso material que vem da autoconfiança e do aprimoramento contínuo. Ensina liderança com humildade — o risco é virar controladora, impondo demais a própria visão.</div>
+    </div>
+  </div>
+  <div class="pagesub">thais · mapa essencial</div>
+  <div class="pagenum">03</div>
+</div>
+
+<!-- =========================================================== PAGE 4 — CICLOS =========================================================== -->
+<div class="page">
+  <div class="tape lilac" style="top:12mm; right:24mm; transform:rotate(5deg);"></div>
+  <div class="headline-row" style="margin-top:6mm;">
+    <svg class="sigil" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="20" cy="20" r="2" fill="currentColor"/><line x1="20" y1="2" x2="20" y2="8" stroke="currentColor" stroke-width="1.2"/><line x1="20" y1="32" x2="20" y2="38" stroke="currentColor" stroke-width="1.2"/><line x1="2" y1="20" x2="8" y2="20" stroke="currentColor" stroke-width="1.2"/><line x1="32" y1="20" x2="38" y2="20" stroke="currentColor" stroke-width="1.2"/></svg>
+    <h1 class="page-title">o seu agora — e os ciclos que estão virando</h1>
+  </div>
+  <hr class="rule">
+
+  <div class="grid3">
+    <div class="card" style="text-align:center;">
+      <div class="label">Ano pessoal</div>
+      <div class="bignum">1</div>
+      <div class="desc">ano de plantar do zero</div>
+    </div>
+    <div class="card" style="text-align:center;">
+      <div class="label">Mês pessoal</div>
+      <div class="bignum">8</div>
+      <div class="desc">mês de colher em poder</div>
+    </div>
+    <div class="card" style="text-align:center;">
+      <div class="label">Dia pessoal</div>
+      <div class="bignum">3</div>
+      <div class="desc">dia de comunicar e brilhar</div>
+    </div>
+  </div>
+
+  <div class="body-txt" style="margin-top:14px;">dias favoráveis do mês:
+    <span class="chip">3</span><span class="chip">9</span><span class="chip">18</span><span class="chip">21</span><span class="chip">30</span>
+  </div>
+
+  <h2 style="font-size:17px; margin-top:20px; color:var(--matcha-700);">ciclos de vida</h2>
+  <div class="timeline">
+    <div class="tl-item"><b>1º ciclo — número 11</b> · 1996 → 2025 <br><span class="desc">formação, intuição, sensibilidade acima da média. a base que te trouxe até aqui.</span></div>
+    <div class="tl-item"><b>2º ciclo — número 8</b> · 2025 → 2052 <br><span class="desc">é literalmente <i>agora</i>. ciclo de poder, negócios e materialização. a fase pra construir o império, não só sonhar com ele.</span></div>
+    <div class="tl-item"><b>3º ciclo — número 7</b> · 2052 → ? <br><span class="desc">introspecção, sabedoria, especialização depois de já ter construído.</span></div>
+  </div>
+
+  <h2 style="font-size:17px; margin-top:10px; color:var(--matcha-700);">momentos decisivos</h2>
+  <div class="body-txt" style="line-height:2;">
+    1º: <b>1</b> (1996→2025) &nbsp;→&nbsp; 2º: <b>6</b> (2025→2034) &nbsp;→&nbsp; 3º: <b>7</b> (2034→2043) &nbsp;→&nbsp; 4º: <b>9</b> (2043→?)
+  </div>
+
+  <div class="callout" style="margin-top:14px;">
+    <div class="eyebrow">✦ repara nisso</div>
+    <p style="margin-top:6px;">2025 é a virada do <b>1º pro 2º ciclo de vida</b> E do <b>1º pro 2º momento decisivo</b>, ao mesmo tempo.
+    Isso não é comum — é o seu próprio mapa dizendo, sem rodeio, que essa janela (2025–2026, exatamente quando seu arcano atual
+    também está em curso, e quando sua revolução solar carrega o Sol na casa 10) é o ponto de virada estrutural. Não é só sensação sua.</p>
+  </div>
+  <div class="pagesub">thais · ciclos e tempo</div>
+  <div class="pagenum">04</div>
+</div>
+
+<!-- =========================================================== PAGE 5 — DESAFIOS / HARMONIA =========================================================== -->
+<div class="page">
+  <div class="tape clay" style="top:12mm; left:22mm; transform:rotate(-4deg);"></div>
+  <div class="headline-row" style="margin-top:6mm;">
+    <svg class="sigil" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="20" cy="20" r="2" fill="currentColor"/><line x1="20" y1="2" x2="20" y2="8" stroke="currentColor" stroke-width="1.2"/><line x1="20" y1="32" x2="20" y2="38" stroke="currentColor" stroke-width="1.2"/><line x1="2" y1="20" x2="8" y2="20" stroke="currentColor" stroke-width="1.2"/><line x1="32" y1="20" x2="38" y2="20" stroke="currentColor" stroke-width="1.2"/></svg>
+    <h1 class="page-title">desafios, lições e com quem você combina</h1>
+  </div>
+  <hr class="rule">
+
+  <div class="grid3">
+    <div class="card" style="text-align:center;">
+      <div class="label">1º desafio</div><div class="bignum" style="font-size:26px;">6</div>
+      <div class="desc">superar vaidade e o excesso de responsabilidade pelos outros</div>
+    </div>
+    <div class="card" style="text-align:center;">
+      <div class="label">2º desafio</div><div class="bignum" style="font-size:26px;">1</div>
+      <div class="desc">superar o ego e a tentação autoritária</div>
+    </div>
+    <div class="card" style="text-align:center;">
+      <div class="label">desafio principal</div><div class="bignum" style="font-size:26px;">5</div>
+      <div class="desc">transformar a inquietação em liberdade com responsabilidade</div>
+    </div>
+  </div>
+
+  <div class="grid2" style="margin-top:11px;">
+    <div class="card">
+      <div class="label">lições cármicas</div>
+      <div class="bignum" style="font-size:20px;">9</div>
+      <div class="desc">o que ainda está sendo aprendido nessa passagem: soltar o controle sobre o resultado alheio.</div>
+    </div>
+    <div class="card">
+      <div class="label">dívidas cármicas</div>
+      <div class="bignum" style="font-size:20px;">14</div>
+      <div class="desc">tema recorrente: disciplina com liberdade — usar a versatilidade sem se dispersar.</div>
+    </div>
+    <div class="card">
+      <div class="label">tendências ocultas</div>
+      <div class="body-txt" style="font-size:16px; font-family:'Fraunces',serif; color:var(--clay);">1 · 3 · 4 · 5</div>
+      <div class="desc">o combo escondido: liderança + comunicação + estrutura + mudança. praticamente um perfil de fundadora de marca.</div>
+    </div>
+    <div class="card">
+      <div class="label">resposta subconsciente</div>
+      <div class="bignum" style="font-size:20px;">8</div>
+      <div class="desc">sob pressão, o instinto vai direto pro poder e pela solução prática.</div>
+    </div>
+  </div>
+
+  <h2 style="font-size:16px; margin-top:18px; color:var(--matcha-700);">harmonia conjugal / vínculos</h2>
+  <div class="card accent-gold" style="background:var(--matcha-50);">
+    <div class="body-txt" style="line-height:2;">
+      💛 vibra em sintonia com: <b>6</b><br>
+      🧲 atrai naturalmente: <b>1</b> e <b>8</b><br>
+      ⚡ tensão / oposição com: <b>3</b> e <b>5</b><br>
+      🌊 é passivo(a), se adapta, com: <b>2, 7, 9</b>
+    </div>
+  </div>
+  <div class="desc" style="margin-top:7px;">números harmônicos gerais: <b>2, 3, 9</b> — pessoas e parcerias com esses números tendem a fluir fácil com você.</div>
+  <div class="pagesub">thais · desafios e harmonia</div>
+  <div class="pagenum">05</div>
+</div>
+
+<!-- =========================================================== PAGE 6 — TRIÂNGULOS =========================================================== -->
+<div class="page">
+  <div class="tape gold" style="top:12mm; right:22mm; transform:rotate(4deg);"></div>
+  <div class="headline-row" style="margin-top:6mm;">
+    <svg class="sigil" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="20" cy="20" r="2" fill="currentColor"/><line x1="20" y1="2" x2="20" y2="8" stroke="currentColor" stroke-width="1.2"/><line x1="20" y1="32" x2="20" y2="38" stroke="currentColor" stroke-width="1.2"/><line x1="2" y1="20" x2="8" y2="20" stroke="currentColor" stroke-width="1.2"/><line x1="32" y1="20" x2="38" y2="20" stroke="currentColor" stroke-width="1.2"/></svg>
+    <h1 class="page-title">os triângulos — onde a energia se repete</h1>
+  </div>
+  <div class="eyebrow" style="margin:2px 0 8px 34px;">quando um número se repete 3x seguidas, é ponto de luz — energia concentrada, não diluída</div>
+  <hr class="rule">
+
+  <div class="grid2">
+    <div class="card accent">
+      <div class="label" style="color:var(--clay);">triângulo pessoal</div>
+      <div class="body-txt" style="font-family:'Fraunces',serif; font-style:italic; font-size:17px; margin:5px 0; color:var(--matcha-900);">666 · 999</div>
+      <div class="desc"><b>54 · Valete de Espadas:</b> diplomacia e estratégia a serviço de objetivos intelectuais — risco de hesitação ou hipocrisia se faltar integridade. <b>666:</b> dificuldade de expressar emoção, gerando decepções afetivas; antídoto é o contato genuíno e o amadurecimento emocional. <b>999:</b> risco de perdas por resistir a mudar; antídoto é o desapego, entender dinheiro como consequência e não como fim.</div>
+    </div>
+    <div class="card accent-clay">
+      <div class="label" style="color:var(--clay);">triângulo da vida</div>
+      <div class="body-txt" style="font-family:'Fraunces',serif; font-style:italic; font-size:17px; margin:5px 0; color:var(--matcha-900);">555 · 777 · 888</div>
+      <div class="desc"><b>65 · Rei de Ouros</b> (seu arcano atual!) inaugura este triângulo: sucesso material por trabalho ético e autoconfiança. <b>555:</b> mudanças não planejadas e instabilidade — pede amadurecimento emocional e orçamento equilibrado. <b>777:</b> risco de isolamento por medo — pede coragem e tolerância. <b>888:</b> oscilação entre abundância e carência — pede razão, ética e responsabilidade.</div>
+    </div>
+    <div class="card accent-gold">
+      <div class="label" style="color:var(--clay);">triângulo social</div>
+      <div class="body-txt" style="font-family:'Fraunces',serif; font-style:italic; font-size:17px; margin:5px 0; color:var(--matcha-900);">333 · 666 · 999 (duplo)</div>
+      <div class="desc"><b>87 → 15 (A Paixão) + 6 (A Escolha):</b> espiritualização pela humanização — lida com desejo/ego e a necessidade de escolher com discernimento, sem se deixar levar por impulsos. <b>333:</b> desafios de comunicação e empatia; antídoto é se expressar genuinamente. Os ecos de <b>666</b> e <b>999</b> reforçam os temas de afeto e desapego já vistos no triângulo pessoal — socialmente, isso é o que as pessoas sentem em você antes de qualquer apresentação formal.</div>
+    </div>
+    <div class="card accent">
+      <div class="label" style="color:var(--clay);">triângulo do destino</div>
+      <div class="body-txt" style="font-family:'Fraunces',serif; font-style:italic; font-size:17px; margin:5px 0; color:var(--matcha-900);">444 · 888 · 777 (duplo)</div>
+      <div class="desc"><b>76 · Três de Ouros:</b> descoberta de um tesouro no mundo material através de colaboração e diligência — risco de dispersão se faltar preparo. <b>444:</b> dificuldades profissionais por falta de disciplina; antídoto é sistematizar e focar. Os ecos de <b>777</b> e <b>888</b> mostram que seu destino não é sorte — é construção estudada, repetida, sustentada.</div>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top:13px;">
+    <div class="eyebrow">✦ o padrão que salta aos olhos</div>
+    <p style="margin-top:5px;">6, 7, 8 e 9 se repetem em praticamente todos os triângulos. Isso é raro. Você não é uma pessoa de "um dom só" —
+    é alguém com beleza/estética (6), profundidade (7), poder material (8) e alcance quase global (9) rodando juntos, o tempo inteiro, em paralelo.
+    É basicamente o retrato numérico de "comunicadora com marcas de moda mirando o mundo".</p>
+  </div>
+  <div class="pagesub">thais · triângulos e arcanos</div>
+  <div class="pagenum">06</div>
+</div>
+
+<!-- =========================================================== PAGE 7 — NUMEROLOGIA DA MARCA (COOL MINT) =========================================================== -->
+<div class="page">
+  <div class="tape matcha" style="top:12mm; left:22mm; transform:rotate(-4deg);"></div>
+  <div class="headline-row" style="margin-top:6mm;">
+    <svg class="sigil" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="20" cy="20" r="2" fill="currentColor"/><line x1="20" y1="2" x2="20" y2="8" stroke="currentColor" stroke-width="1.2"/><line x1="20" y1="32" x2="20" y2="38" stroke="currentColor" stroke-width="1.2"/><line x1="2" y1="20" x2="8" y2="20" stroke="currentColor" stroke-width="1.2"/><line x1="32" y1="20" x2="38" y2="20" stroke="currentColor" stroke-width="1.2"/></svg>
+    <h1 class="page-title">a numerologia da marca — Cool Mint</h1>
+  </div>
+  <div class="eyebrow" style="margin:2px 0 8px 34px;">razão social "Thais Arizona Cool Mint" + nome fantasia "Cool Mint"</div>
+  <hr class="rule">
+
+  <div class="grid3">
+    <div class="card accent">
+      <div class="label">Razão social · Motivação</div>
+      <div class="bignum">9 <span style="font-size:13px; color:var(--ink-soft); font-style:normal;">(27)</span></div>
+      <div class="desc">a empresa é motivada, por dentro, por algo maior que o lucro — alcance, generosidade, propósito universal.</div>
+    </div>
+    <div class="card accent-clay">
+      <div class="label">Razão social · Impressão</div>
+      <div class="bignum">9 <span style="font-size:13px; color:var(--ink-soft); font-style:normal;">(45)</span></div>
+      <div class="desc">a impressão que a empresa causa antes de qualquer contato: generosa, de visão ampla, quase institucional.</div>
+    </div>
+    <div class="card accent-gold">
+      <div class="label">Razão social · Expressão</div>
+      <div class="bignum">9 <span style="font-size:13px; color:var(--ink-soft); font-style:normal;">(72)</span></div>
+      <div class="desc">e entrega o que promete do mesmo jeito: comunicação de alcance amplo, humanitária, quase sem fronteira.</div>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top:12px;">
+    <div class="eyebrow">✦ o triplo 9 da razão social</div>
+    <p style="margin-top:5px;">Motivação, Impressão e Expressão batendo todos em <b>9</b> é incomum — a razão social inteira vibra numa única
+    nota: generosidade, causa, alcance universal. É lindo — mas é também o número que, na prática, costuma se sentir mais em casa
+    dentro de ONGs e instituições de propósito social do que dentro de uma marca comercial pura. Isso não invalida a Cool Mint; é um convite:
+    <b>vale costurar um componente social/mission-driven real na marca</b> (parceria social, educação, sustentabilidade, causa) para que
+    o 9 da razão social encontre seu lugar dentro do 8 do ciclo comercial atual — ao invés de ficar puxando em direções opostas.</p>
+  </div>
+
+  <div class="grid3" style="margin-top:14px;">
+    <div class="card">
+      <div class="label">Nome fantasia · Motivação</div>
+      <div class="bignum" style="font-size:26px;">6</div>
+      <div class="desc">motivada por harmonia, cuidado, beleza — o "lar" que a marca quer ser para quem compra.</div>
+    </div>
+    <div class="card">
+      <div class="label">Nome fantasia · Impressão</div>
+      <div class="bignum" style="font-size:26px;">1</div>
+      <div class="desc">impressão de marca pioneira, original, que lidera — não segue tendência, abre uma.</div>
+    </div>
+    <div class="card">
+      <div class="label">Nome fantasia · Expressão</div>
+      <div class="bignum" style="font-size:26px;">7</div>
+      <div class="desc">entrega sofisticação, exclusividade e um quê de expertise estudada — produto pensado, não improvisado.</div>
+    </div>
+  </div>
+
+  <div class="body-txt" style="margin-top:14px;">"Cool Mint" combina calor (6) com liderança percebida (1) e requinte intelectual (7) — um trio raro para
+  uma marca de óculos e moda: acolhedora no cuidado, pioneira na percepção, refinada na entrega.</div>
+
+  <div class="grid2" style="margin-top:14px;">
+    <div class="card tinted">
+      <div class="label">Destino da empresa</div>
+      <div class="bignum" style="font-size:24px;">9</div>
+      <div class="desc">calling humanitário/universal — mais afinado, por natureza, com causas do que com o comércio puro (ver nota acima).</div>
+    </div>
+    <div class="card tinted">
+      <div class="label">Ciclo de vida atual</div>
+      <div class="bignum" style="font-size:24px;">8</div>
+      <div class="desc">momento de poder, negociação e construção material — a fase de erguer a estrutura de fato.</div>
+    </div>
+    <div class="card tinted-clay">
+      <div class="label">Desafio</div>
+      <div class="bignum" style="font-size:24px;">5</div>
+      <div class="desc">evitar dispersão — mudar demais de direção sem consolidar nenhuma.</div>
+    </div>
+    <div class="card tinted-clay">
+      <div class="label">Momento decisivo</div>
+      <div class="bignum" style="font-size:24px;">11</div>
+      <div class="desc">número mestre — visão inspirada; se a coragem acompanhar a intuição, o salto vem por aqui.</div>
+    </div>
+  </div>
+  <div class="pagesub">thais · numerologia da marca</div>
+  <div class="pagenum">07</div>
+</div>
+
+<!-- =========================================================== PAGE 8 — LAB DE NOMES =========================================================== -->
+<div class="page">
+  <div class="tape lilac" style="top:12mm; left:22mm; transform:rotate(-4deg);"></div>
+  <div class="headline-row" style="margin-top:6mm;">
+    <svg class="sigil" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="20" cy="20" r="2" fill="currentColor"/><line x1="20" y1="2" x2="20" y2="8" stroke="currentColor" stroke-width="1.2"/><line x1="20" y1="32" x2="20" y2="38" stroke="currentColor" stroke-width="1.2"/><line x1="2" y1="20" x2="8" y2="20" stroke="currentColor" stroke-width="1.2"/><line x1="32" y1="20" x2="38" y2="20" stroke="currentColor" stroke-width="1.2"/></svg>
+    <h1 class="page-title">laboratório de nomes — tudo que testamos</h1>
+  </div>
+  <div class="eyebrow" style="margin:2px 0 8px 34px;">forma é conteúdo: cada variação muda a vibração do nome mesmo mudando pouco na escrita</div>
+  <hr class="rule">
+
+  <table class="rep">
+    <tr><th>versão testada</th><th>tipo</th><th>expr.</th><th>arcano</th><th>leitura rápida</th></tr>
+    <tr><td><b>Thais Antunes dos Santos Pereira</b></td><td>nome civil</td><td>5</td><td>65</td><td>a base — versátil, mas "escondida" atrás do nome completo formal</td></tr>
+    <tr><td><b>Camila Arizona</b></td><td>nome</td><td>1</td><td>13</td><td>identidade nova, energia de recomeço puro</td></tr>
+    <tr><td><b>Camila Årizona</b> <span class="script" style="font-size:12px;">(c/ acento)</span></td><td>nome</td><td>8</td><td>13</td><td>o acento muda tudo: injeta poder material direto na expressão</td></tr>
+    <tr><td><b>Camila Ar'izona</b> <span class="script" style="font-size:12px;">(apóstrofo)</span></td><td>nome</td><td>3</td><td>13</td><td>puxa pro lado comunicação/criatividade</td></tr>
+    <tr><td><b>Camila Arizona</b></td><td>assinatura</td><td>1</td><td>13</td><td>Motivação 4 · Impressão 6 — assina como quem já decidiu</td></tr>
+    <tr><td><b>CaArizona</b></td><td>assinatura estilizada</td><td>1</td><td>12</td><td>Motivação <b>11</b> (mestre!) — mas arcano 12 pede pausa antes de lançar</td></tr>
+    <tr><td><b>Camila Arz</b></td><td>assinatura curta</td><td>5</td><td>41</td><td>Motivação 4 · Impressão 1 — versátil e direta, ótima pra logo</td></tr>
+    <tr><td><b>ÁR'Z</b></td><td>assinatura curta</td><td>3</td><td>32</td><td>Motivação 3 · Impressão 9 — comunicação pura, curta, forte</td></tr>
+    <tr><td><b>Cá</b></td><td>apelido</td><td>6</td><td>33</td><td>Motivação 3 · Impressão 3 — arcano 33 (mestre!), afeto + beleza</td></tr>
+    <tr style="background:rgba(178,138,63,.14);"><td><b>CArizona</b> ★</td><td>assinatura</td><td>9</td><td><b>21</b></td><td>Motivação 4 · Impressão 8 — <b>arcano 21, O Mundo</b>: realização, alcance global. o teste mais recente e mais forte</td></tr>
+  </table>
+
+  <div class="callout" style="margin-top:16px;">
+    <div class="eyebrow">✦ o achado da rodada mais recente</div>
+    <p style="margin-top:5px;"><b>CArizona</b> caiu no Arcano <b>21 — O Mundo</b>, o mais potente da sequência dos 22 arcanos maiores:
+    representa realização plena, reconhecimento e alcance internacional — a energia de "chegou lá", de ciclo completo e bem-sucedido.
+    Combinado com Motivação 4 (base sólida, disciplina) e Impressão 8 (poder, autoridade, sucesso material percebido de cara), é o teste
+    numericamente mais forte de toda a rodada até agora.</p>
+  </div>
+
+  <div class="card accent" style="margin-top:14px;">
+    <div class="script" style="font-size:16px; color:var(--matcha-700);">✦ um fio que amarra tudo:</div>
+    <div class="body-txt" style="margin-top:5px;">"Camila Arz" e "ÁR'Z" reduzem, os dois, ao número <b>5</b> por caminhos diferentes (41→5 e 32→5). Não é coincidência de leitura — é o mesmo tema (comunicação, versatilidade, movimento) aparecendo em duas versões curtas independentes. Quando isso acontece, é sinal de nome que "quer" existir daquele jeito — e agora "CArizona" chega com um arcano de fechamento de ciclo (21) puxando na direção oposta e complementar: não movimento disperso, mas realização consolidada.</div>
+  </div>
+  <div class="pagesub">thais · laboratório de nomes</div>
+  <div class="pagenum">08</div>
+</div>
+
+<!-- =========================================================== PAGE 9 — IDENTIDADE RECOMENDADA =========================================================== -->
+<div class="page">
+  <div class="tape gold" style="top:12mm; right:24mm; transform:rotate(5deg);"></div>
+  <div class="headline-row" style="margin-top:6mm;">
+    <svg class="sigil" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="20" cy="20" r="2" fill="currentColor"/><line x1="20" y1="2" x2="20" y2="8" stroke="currentColor" stroke-width="1.2"/><line x1="20" y1="32" x2="20" y2="38" stroke="currentColor" stroke-width="1.2"/><line x1="2" y1="20" x2="8" y2="20" stroke="currentColor" stroke-width="1.2"/><line x1="32" y1="20" x2="38" y2="20" stroke="currentColor" stroke-width="1.2"/></svg>
+    <h1 class="page-title">a identidade que eu recomendo</h1>
+  </div>
+  <div class="eyebrow" style="margin:2px 0 8px 34px;">pensada pra comunicadora + duas marcas de óculos e moda + projeção nacional e depois global</div>
+  <hr class="rule">
+
+  <div class="card" style="padding:18px 22px;">
+    <div class="body-txt">Em vez de escolher <i>um</i> nome único, sua situação pede uma identidade em camadas — super comum
+    pra quem carrega mais de uma marca ao mesmo tempo. Com a chegada do arcano 21 (O Mundo) em <b>CArizona</b>, a recomendação
+    ganha um centro de gravidade novo:</div>
+  </div>
+
+  <div class="grid2" style="margin-top:14px;">
+    <div class="card accent-gold" style="text-align:center;">
+      <div class="label" style="color:var(--clay);">assinatura pública — a mais recomendada</div>
+      <div class="display display-italic" style="font-size:28px; margin:6px 0; color:var(--matcha-900);">CArizona</div>
+      <div class="chip gold">Arcano 21 · O Mundo</div>
+      <div class="desc">a assinatura unificadora — a que vai na frente das duas marcas, em entrevistas, palco, cabeçalho. Motivação 4 (base) + Impressão 8 (autoridade) + arcano de realização plena. É o nome de quem já fechou o ciclo de prova e está pronta pro reconhecimento.</div>
+    </div>
+    <div class="card accent" style="text-align:center;">
+      <div class="label" style="color:var(--clay);">nome institucional</div>
+      <div class="display display-italic" style="font-size:28px; margin:6px 0; color:var(--matcha-900);">Camila Arizona</div>
+      <div class="chip">Expressão 1</div>
+      <div class="desc">registro, contratos, a marca-mãe. energia de fundadora começando algo do zero — o que 2025 pede.</div>
+    </div>
+  </div>
+
+  <div class="grid2" style="margin-top:11px;">
+    <div class="card accent-clay" style="text-align:center;">
+      <div class="label" style="color:var(--clay);">marca / produto</div>
+      <div class="display display-italic" style="font-size:24px; margin:6px 0; color:var(--matcha-900);">ÁR'Z</div>
+      <div class="chip clay">Expressão 3</div>
+      <div class="desc">assinatura curta pra logo, coleções de óculos, handle. 3 é comunicação e criatividade em estado puro — perfeito pra grife.</div>
+    </div>
+    <div class="card" style="text-align:center;">
+      <div class="label" style="color:var(--clay);">pessoa / bastidor</div>
+      <div class="display display-italic" style="font-size:24px; margin:6px 0; color:var(--matcha-900);">Cá</div>
+      <div class="chip">Arcano 33 (mestre)</div>
+      <div class="desc">o apelido de bastidor, conteúdo pessoal, comunidade próxima. arcano 33 é o "mestre-professor" — combina com quem ensina através da estética.</div>
+    </div>
+  </div>
+
+  <div class="card tinted" style="margin-top:14px;">
+    <div class="script" style="font-size:16px; color:var(--matcha-700);">⚠ um cuidado:</div>
+    <div class="desc" style="font-size:12px;">"CaArizona" (grafia diferente de "CArizona") tem uma Motivação 11 linda, mas o arcano 12 fala de pausa e entrega
+    antes de colher — guarde essa forma pra depois, não pro lançamento. E "Camila Årizona" com acento continua interessante se, mais pra frente,
+    a marca quiser puxar mais pro tema de poder/negócio puro (Expressão 8).</div>
+  </div>
+
+  <div class="card" style="margin-top:12px;">
+    <div class="script" style="font-size:15px; color:var(--matcha-700);">se quiser testar mais opções sozinha, procure por:</div>
+    <div class="desc" style="font-size:12.5px; margin-top:3px;">Expressão 1, 3, 5, 8 ou 9 (liderança, comunicação, versatilidade, poder, alcance) — ou números mestres 11/22/33, e arcanos de realização como o 21, se topar carregar uma responsabilidade energética maior.</div>
+  </div>
+  <div class="pagesub">thais · identidade recomendada</div>
+  <div class="pagenum">09</div>
+</div>
+
+<!-- =========================================================== PAGE 10 — MAPA ASTRAL: PANORAMA =========================================================== -->
+<div class="page">
+  <div class="tape lilac" style="top:12mm; left:50%; margin-left:-54px; transform:rotate(-3deg);"></div>
+  <div class="headline-row" style="margin-top:6mm;">
+    <svg class="sigil" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="20" cy="20" r="8" fill="none" stroke="currentColor" stroke-width="1"/><circle cx="20" cy="20" r="1.6" fill="currentColor"/></svg>
+    <h1 class="page-title">o mapa astral — panorama de nascimento</h1>
+  </div>
+  <div class="eyebrow" style="margin:2px 0 8px 34px;">08/11/1996 · 4h35 · São Paulo, SP · Sol Escorpião · Ascendente Libra · MC Câncer</div>
+  <hr class="rule">
+
+  <p>Agora saindo da numerologia e entrando na astrologia: seu mapa natal é lido por casas (áreas da vida) e por planetas
+  (funções psíquicas) posicionados em signos (o "como"). Abaixo, o panorama completo — depois vamos abrir cada camada.</p>
+
+  <table class="rep" style="margin-top:12px;">
+    <tr><th>planeta / ponto</th><th>signo</th><th>grau</th><th>casa</th><th>palavra-chave</th></tr>
+    <tr><td><span class="planet-glyph">☉</span>Sol</td><td>Escorpião</td><td>16°08'</td><td class="mono">I / II</td><td>identidade intensa, magnética, transformadora</td></tr>
+    <tr><td><span class="planet-glyph">☽</span>Lua</td><td>Libra</td><td>10°59'</td><td class="mono">XII</td><td>emoção estética, refinada, vivida em privado</td></tr>
+    <tr><td><span class="planet-glyph">☿</span>Mercúrio</td><td>Escorpião</td><td>19°55'</td><td class="mono">II</td><td>mente investigativa, estratégica, penetrante</td></tr>
+    <tr><td><span class="planet-glyph">♀</span>Vênus</td><td>Libra</td><td>11°51'</td><td class="mono">XII</td><td>romantismo estético, harmonia, charme discreto</td></tr>
+    <tr><td><span class="planet-glyph">♂</span>Marte</td><td>Virgem</td><td>4°54'</td><td class="mono">XII</td><td>ação meticulosa, artesanal, de bastidor</td></tr>
+    <tr><td><span class="planet-glyph">♃</span>Júpiter</td><td>Capricórnio</td><td>14°00'</td><td class="mono">IV</td><td>expansão através de estrutura, legado, ambição</td></tr>
+    <tr><td><span class="planet-glyph">♄</span>Saturno <span class="mono soft">R</span></td><td>Áries</td><td>1°09'</td><td class="mono">VI</td><td>disciplina forjada por reaprender a se afirmar</td></tr>
+    <tr><td><span class="planet-glyph">♅</span>Urano</td><td>Aquário</td><td>1°00'</td><td class="mono">IV</td><td>ruptura de moldes familiares/tradicionais</td></tr>
+    <tr><td><span class="planet-glyph">♆</span>Netuno</td><td>Capricórnio</td><td>25°16'</td><td class="mono">IV</td><td>visão inspirada de legado e propósito</td></tr>
+    <tr><td><span class="planet-glyph">♇</span>Plutão</td><td>Sagitário</td><td>2°20'</td><td class="mono">II</td><td>poder através da crença, expansão, filosofia</td></tr>
+    <tr><td><span class="planet-glyph">☊</span>Nodo Norte <span class="mono soft">R</span></td><td>Libra</td><td>5°54'</td><td class="mono">XII</td><td>rumo evolutivo: parceria, estética, entrega</td></tr>
+    <tr><td><span class="planet-glyph">⚸</span>Lilith</td><td>Leão</td><td>15°26'</td><td class="mono">XI</td><td>autenticidade selvagem em redes e coletivos</td></tr>
+    <tr><td><span class="planet-glyph">⚷</span>Quíron</td><td>Libra</td><td>24°00'</td><td class="mono">I</td><td>ferida-dom em torno da própria imagem</td></tr>
+    <tr><td>⊕ Fortuna</td><td>Escorpião</td><td>18°19'</td><td class="mono">II</td><td>sorte via profundidade e recursos próprios</td></tr>
+    <tr><td>Vx Vértex</td><td>Áries</td><td>5°22'</td><td class="mono">VI</td><td>encontros de destino através do trabalho</td></tr>
+  </table>
+
+  <div class="grid2" style="margin-top:12px;">
+    <div class="card tinted">
+      <div class="label">Ascendente</div>
+      <div class="bignum" style="font-size:22px;">Libra 13°10'</div>
+      <div class="desc">a "capa": elegância, diplomacia, senso estético refinado, necessidade de equilíbrio nas relações.</div>
+    </div>
+    <div class="card tinted-clay">
+      <div class="label">Meio do Céu (MC)</div>
+      <div class="bignum" style="font-size:22px;">Câncer 9°02'</div>
+      <div class="desc">a vocação pública: cuidar, nutrir, criar uma "casa"/comunidade — até dentro de um negócio.</div>
+    </div>
+  </div>
+  <div class="pagesub">thais · mapa astral · panorama</div>
+  <div class="pagenum">10</div>
+</div>
+
+<!-- =========================================================== PAGE 11 — MAPA ASTRAL: CASAS =========================================================== -->
+<div class="page">
+  <div class="tape lilac" style="top:12mm; right:22mm; transform:rotate(4deg);"></div>
+  <div class="headline-row" style="margin-top:6mm;">
+    <svg class="sigil" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="20" cy="20" r="8" fill="none" stroke="currentColor" stroke-width="1"/><circle cx="20" cy="20" r="1.6" fill="currentColor"/></svg>
+    <h1 class="page-title">mapa astral — potenciais e dificuldades por casa</h1>
+  </div>
+  <hr class="rule">
+
+  <div class="card accent-lilac">
+    <div class="label" style="color:var(--lilac);">Casa XII · concentração forte — Lua, Vênus, Marte, Nodo Norte, todos em Libra/Virgem</div>
+    <div class="desc" style="font-size:12.3px; margin-top:5px;"><b>Potencial:</b> uma vida interior riquíssima, esteticamente refinada — você processa afeto, beleza e vínculo em profundidade, muitas vezes longe dos holofotes, e é ali, no silêncio, que nascem suas melhores ideias criativas e sua sensibilidade de curadoria (perfeita para design de coleções, moodboards, direção estética). <b>Dificuldade:</b> tendência a esconder necessidades emocionais reais atrás de uma fachada tranquila, ou a viver o romantismo/a estética "por trás das cortinas" em vez de reivindicá-los abertamente. O Nodo Norte aqui confirma: o crescimento da vida é aprender a trazer para fora, com parceria e vulnerabilidade, o que o instinto quer guardar sozinha.</div>
+  </div>
+
+  <div class="card accent-clay" style="margin-top:11px;">
+    <div class="label" style="color:var(--clay);">Casas I–II · Sol, Mercúrio, Plutão, Fortuna, Quíron — em Escorpião/Sagitário/Libra</div>
+    <div class="desc" style="font-size:12.3px; margin-top:5px;"><b>Potencial:</b> uma identidade magnética e praticamente impossível de ignorar — Sol em Escorpião na cúspide da II casa entrega presença, intensidade e a capacidade de transformar tudo que toca, inclusive dinheiro e recursos próprios (Plutão e Fortuna na II reforçam: sua prosperidade nasce de ir fundo, não de ficar na superfície). Mercúrio conjunto ao Sol dá uma mente estratégica, quase investigativa — você enxerga camadas que os outros não veem. <b>Dificuldade:</b> Quíron em Libra na I casa é a ferida em torno de "como sou vista" — pode haver uma história de se sentir mal compreendida ou julgada pela própria imagem; a cura vem de se apresentar como realmente é, sem diluir a intensidade para agradar.</div>
+  </div>
+
+  <div class="card accent" style="margin-top:11px;">
+    <div class="label" style="color:var(--matcha-700);">Casa IV · Júpiter, Urano, Netuno em Capricórnio/Aquário</div>
+    <div class="desc" style="font-size:12.3px; margin-top:5px;"><b>Potencial:</b> uma visão de longo prazo enorme sobre "raízes" — família, base, legado, patrimônio. Júpiter e Netuno juntos em Capricórnio na IV casa sugerem que você constrói fundação com fé e inspiração, não só com tijolo: há algo quase vocacional na forma como você pensa "casa" (inclusive corporativa). Urano ali mesmo, em Aquário, adiciona a vontade de romper com o modelo tradicional de família/negócio herdado e inventar um formato próprio, mais livre. <b>Dificuldade:</b> Júpiter-Netuno pode borrar limites — otimismo além da conta em questões domésticas/financeiras da base, ou dificuldade em separar sonho de plano executável; vale sempre um "co-piloto" mais chão-de-fábrica para essas decisões.</div>
+  </div>
+
+  <div class="card accent-gold" style="margin-top:11px;">
+    <div class="label" style="color:var(--gold);">Casa VI · Saturno retrógrado e Vértex, em Áries/Peixes</div>
+    <div class="desc" style="font-size:12.3px; margin-top:5px;"><b>Potencial:</b> disciplina de trabalho conquistada, não herdada — Saturno retrógrado na VI casa constrói autoridade a partir de tentativa, erro e reconstrução interna, o que torna essa autoridade profundamente sua quando finalmente amadurece (e o seu ciclo de vida 8, ativo agora, é exatamente o palco dessa maturação). O Vértex em Áries na mesma casa sugere encontros de destino ligados ao trabalho cotidiano e à rotina — pessoas certas aparecem através do fazer, não da teoria. <b>Dificuldade:</b> o padrão típico de Saturno em Áries retrógrado é aprender, às vezes com atraso ou repetição, a se afirmar sem pedir permissão; cuidado com autocrítica severa nos bastidores operacionais do negócio.</div>
+  </div>
+
+  <div class="card" style="margin-top:11px;">
+    <div class="label" style="color:var(--matcha-700);">Casa XI · Lilith em Leão</div>
+    <div class="desc" style="font-size:12.3px; margin-top:5px;"><b>Potencial:</b> autenticidade crua e criativa dentro de grupos, redes e causas coletivas — sua versão mais "sem filtro" aparece quando está entre pares, movimentos ou comunidades. <b>Dificuldade:</b> pode gerar desconforto alheio quando seu brilho natural ultrapassa o script do grupo — o convite é liderar visivelmente em vez de se conter para caber.</div>
+  </div>
+  <div class="pagesub">thais · mapa astral · casas</div>
+  <div class="pagenum">11</div>
+</div>
+
+<!-- =========================================================== PAGE 12 — MAPA ASTRAL: SÍNTESE =========================================================== -->
+<div class="page">
+  <div class="tape gold" style="top:12mm; left:22mm; transform:rotate(-5deg);"></div>
+  <div class="headline-row" style="margin-top:6mm;">
+    <svg class="sigil" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="20" cy="20" r="8" fill="none" stroke="currentColor" stroke-width="1"/><circle cx="20" cy="20" r="1.6" fill="currentColor"/></svg>
+    <h1 class="page-title">síntese astrológica — a leitura de conjunto</h1>
+  </div>
+  <hr class="rule">
+
+  <div class="card accent" style="padding:18px 22px;">
+    <div class="body-txt"><b>Sol em Escorpião com Ascendente em Libra</b> é um dos combos mais interessantes do zodíaco para quem constrói marca:
+    por fora, Libra entrega elegância, tato, senso estético apurado e uma capacidade rara de mediar — a "embaixadora" nata, aquela que sabe
+    exatamente como algo deve parecer, soar e se sentir. Por dentro, o Sol em Escorpião é intensidade pura: vontade de profundidade, de
+    transformação, de ir até a raiz das coisas, e uma resiliência que não aparece na superfície educada de Libra. É a arquétipo da
+    <i>"diplomata com presas"</i> — charme que não é fraqueza, é estratégia.</div>
+  </div>
+
+  <div class="body-txt" style="margin-top:13px;">Essa dualidade se confirma no resto do mapa: enquanto Lua, Vênus, Marte e o Nodo Norte se
+  reúnem na Casa XII (o "quarto fechado" do mapa — vida interior, bastidores, espiritualidade, o que é vivido antes de ser mostrado), o
+  Sol, Mercúrio e Plutão se concentram nas Casas I–II (a "vitrine" e os recursos próprios). Na prática: você processa profundamente e em
+  silêncio (XII) antes de apresentar ao mundo uma versão magnética e decidida de si (I–II). É a mesma lógica, aliás, por trás da sua
+  identidade em camadas na numerologia — um nome de bastidor (Cá), um nome de vitrine (CArizona/ÁR'Z).</div>
+
+  <div class="callout" style="margin-top:14px;">
+    <div class="eyebrow">✦ onde astrologia e numerologia se apertam as mãos</div>
+    <p style="margin-top:5px;">Seu Destino numerológico é <b>8</b> (poder pessoal, construção material) — e no mapa astral, Júpiter e Netuno
+    em Capricórnio na Casa IV contam exatamente a mesma história: ambição de longo prazo, construção de legado, fé no próprio projeto.
+    Sua Missão é <b>4</b> (estrutura, disciplina) — e Saturno, o planeta da estrutura por excelência, está retrógrado na Casa VI do trabalho
+    cotidiano, pedindo a mesma coisa: disciplina construída na prática. Quando dois sistemas diferentes, calculados de formas totalmente
+    distintas, apontam pro mesmo tema, vale prestar atenção — não é coincidência, é confirmação.</p>
+  </div>
+
+  <div class="body-txt" style="margin-top:13px;">Para o projeto de marca especificamente: o Ascendente em Libra e a Vênus/Lua em Libra na XII casa
+  são ouro puro para uma marca de óculos e moda — sensibilidade estética instintiva, senso de proporção e beleza que não precisa ser
+  ensinado. O desafio real, apontado por Quíron na I casa, é deixar a intensidade escorpiana aparecer junto com o charme libriano na hora de
+  se apresentar publicamente — não escolher entre ser "elegante" ou ser "intensa": ser as duas coisas, ao mesmo tempo, é justamente a
+  assinatura do seu mapa.</div>
+  <div class="pagesub">thais · mapa astral · síntese</div>
+  <div class="pagenum">12</div>
+</div>
+
+<!-- =========================================================== PAGE 13 — REVOLUÇÃO SOLAR 2026: PANORAMA =========================================================== -->
+<div class="page">
+  <div class="tape clay" style="top:12mm; left:50%; margin-left:-54px; transform:rotate(-2deg);"></div>
+  <div class="headline-row" style="margin-top:6mm;">
+    <svg class="sigil" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M20 6 A14 14 0 0 1 20 34" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
+    <h1 class="page-title">revolução solar 2026 — o retrato do seu ano</h1>
+  </div>
+  <div class="eyebrow" style="margin:2px 0 8px 34px;">o momento exato em que o Sol retorna ao seu grau natal (Escorpião 16°08') — o "mapa do ano", válido de aniversário a aniversário</div>
+  <hr class="rule">
+
+  <p>Uma revolução solar é lida como um mapa independente, mas sempre em diálogo com o mapa natal: os planetas que se agrupam por casa
+  mostram onde a energia do ano vai se concentrar. No seu caso de 2026, o padrão é muito claro — e muito alinhado com o que a numerologia
+  já vinha dizendo sobre esta janela de 2025–2026.</p>
+
+  <table class="rep" style="margin-top:12px;">
+    <tr><th>planeta / ponto</th><th>signo</th><th>grau</th><th>casa RS</th><th>tema do ano</th></tr>
+    <tr><td><span class="planet-glyph">☉</span>Sol</td><td>Escorpião</td><td>16°08'</td><td class="mono">X</td><td>visibilidade, carreira, imagem pública</td></tr>
+    <tr><td><span class="planet-glyph">☽</span>Lua</td><td>Escorpião</td><td>7°31'</td><td class="mono">X</td><td>envolvimento emocional intenso com o profissional</td></tr>
+    <tr><td><span class="planet-glyph">☿</span>Mercúrio <span class="mono soft">R</span></td><td>Escorpião</td><td>7°32'</td><td class="mono">X</td><td>revisão de mensagem, contratos, rebranding</td></tr>
+    <tr><td><span class="planet-glyph">♀</span>Vênus <span class="mono soft">R</span></td><td>Libra</td><td>23°28'</td><td class="mono">X</td><td>reavaliação de valor, preço, parcerias de imagem</td></tr>
+    <tr><td><span class="planet-glyph">♂</span>Marte</td><td>Leão</td><td>22°19'</td><td class="mono">VIII</td><td>coragem financeira, investimento, negociação</td></tr>
+    <tr><td><span class="planet-glyph">♃</span>Júpiter</td><td>Leão</td><td>25°10'</td><td class="mono">VIII</td><td>expansão via parceria, sorte em recursos compartilhados</td></tr>
+    <tr><td><span class="planet-glyph">♄</span>Saturno <span class="mono soft">R</span></td><td>Áries</td><td>8°50'</td><td class="mono">III</td><td>disciplina na comunicação e no dia a dia</td></tr>
+    <tr><td><span class="planet-glyph">♅</span>Urano <span class="mono soft">R</span></td><td>Gêmeos</td><td>4°23'</td><td class="mono">V</td><td>criatividade imprevisível, ideias fora da curva</td></tr>
+    <tr><td><span class="planet-glyph">♆</span>Netuno <span class="mono soft">R</span></td><td>Áries</td><td>1°56'</td><td class="mono">III</td><td>mensagem precisa de mais clareza que inspiração</td></tr>
+    <tr><td><span class="planet-glyph">♇</span>Plutão</td><td>Aquário</td><td>3°11'</td><td class="mono">I</td><td>reinvenção pessoal, nova imagem</td></tr>
+    <tr><td>⚸ Lilith</td><td>Capricórnio</td><td>6°07'</td><td class="mono">XII</td><td>força pessoal cultivada em privado</td></tr>
+    <tr><td>⚷ Quíron <span class="mono soft">R</span></td><td>Áries</td><td>27°44'</td><td class="mono">IV</td><td>cicatrização da base/família enquanto constrói</td></tr>
+    <tr><td>⊕ Fortuna</td><td>Capricórnio</td><td>15°38'</td><td class="mono">XII</td><td>sorte discreta, construída longe dos holofotes</td></tr>
+  </table>
+
+  <div class="grid2" style="margin-top:12px;">
+    <div class="card tinted">
+      <div class="label">Ascendente da RS</div>
+      <div class="bignum" style="font-size:20px;">Capricórnio 24°14'</div>
+      <div class="desc">o tom do ano: sério, ambicioso, estruturado — nada de improviso, tudo com propósito de longo prazo.</div>
+    </div>
+    <div class="card tinted-clay">
+      <div class="label">Meio do Céu da RS</div>
+      <div class="bignum" style="font-size:20px;">Libra 17°48'</div>
+      <div class="desc">a vocação do ano: reputação, parceria, apresentação impecável ao público.</div>
+    </div>
+  </div>
+  <div class="pagesub">thais · revolução solar 2026 · panorama</div>
+  <div class="pagenum">13</div>
+</div>
+
+<!-- =========================================================== PAGE 14 — REVOLUÇÃO SOLAR 2026: LEITURA =========================================================== -->
+<div class="page">
+  <div class="tape clay" style="top:12mm; right:22mm; transform:rotate(4deg);"></div>
+  <div class="headline-row" style="margin-top:6mm;">
+    <svg class="sigil" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M20 6 A14 14 0 0 1 20 34" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
+    <h1 class="page-title">revolução solar 2026 — leitura profissional</h1>
+  </div>
+  <hr class="rule">
+
+  <div class="card accent-clay">
+    <div class="label" style="color:var(--clay);">Casa X lotada — Sol, Lua, Mercúrio Rx, Vênus Rx, todos entre Libra e Escorpião</div>
+    <div class="desc" style="font-size:12.3px; margin-top:5px;">Este é, sem exagero, um ano de <b>ápice de carreira e visibilidade</b>. Quatro corpos na Casa X — a casa da vocação pública, do
+    status, de "como o mundo te vê profissionalmente" — é uma concentração rara, e o Sol retorna exatamente ao grau em que nasceu, reforçando
+    que 2026 devolve a Thais ao centro do próprio palco. A presença da Lua ali soma envolvimento emocional real com esse momento profissional —
+    não é só estratégia fria, é algo que mexe. Mercúrio e Vênus retrógrados no mesmo setor, porém, pedem paciência: decisões de mensagem, contrato,
+    rebranding, precificação e parcerias de imagem tendem a precisar de mais de uma rodada — o "sim" definitivo costuma vir depois de revisar, não
+    na primeira tentativa. Isso não é atraso, é o ano pedindo consolidação em vez de pressa.</div>
+  </div>
+
+  <div class="card accent-gold" style="margin-top:11px;">
+    <div class="label" style="color:var(--gold);">Casa VIII — Marte conjunto a Júpiter em Leão</div>
+    <div class="desc" style="font-size:12.3px; margin-top:5px;">Marte e Júpiter juntos na casa dos recursos compartilhados, investimentos e parcerias financeiras é um dos aspectos mais
+    animadores do ano: coragem para negociar, atrair investidor ou sócio, assinar algo maior do que faria sozinha — com sorte real do seu lado
+    se a ação vier de convicção, não de impulso. O ponto de atenção padrão desse trânsito é o excesso de confiança em decisões de dinheiro
+    compartilhado: vale ousar, mas com um contrato bem lido.</div>
+  </div>
+
+  <div class="card accent" style="margin-top:11px;">
+    <div class="label" style="color:var(--matcha-700);">Casa I — Plutão</div>
+    <div class="desc" style="font-size:12.3px; margin-top:5px;">Plutão na Casa I da revolução solar é assinatura de <b>reinvenção pessoal</b> — praticamente o retrato astrológico exato do que a
+    numerologia já apontava com o novo nome/arcano 21. É um ano em que a imagem, a forma como você se apresenta, passa por uma transformação
+    de fundo, não cosmética. Combinado com Saturno e Netuno retrógrados na Casa III (comunicação, contratos, rotina), o recado é: reinvente-se
+    de dentro pra fora, mas comunique essa reinvenção com clareza redobrada — é fácil, sob esse céu, a mensagem sair mais confusa do que a
+    intenção.</div>
+  </div>
+
+  <div class="card" style="margin-top:11px;">
+    <div class="label" style="color:var(--matcha-700);">Casa XII — Lilith e Fortuna em Capricórnio</div>
+    <div class="desc" style="font-size:12.3px; margin-top:5px;">A sorte deste ano é discreta — construída em privado, na disciplina e na força pessoal cultivada longe da plateia, antes de
+    aparecer na Casa X. Confie no trabalho feito nos bastidores mesmo quando ele ainda não é visível: ele é exatamente o que sustenta a
+    visibilidade que a Casa X está entregando.</div>
+  </div>
+
+  <div class="callout" style="margin-top:13px;">
+    <div class="eyebrow">✦ leitura de conjunto do ano</div>
+    <p style="margin-top:5px;">2026 é um ano angular — Casa I e Casa X são as duas mais carregadas, exatamente os dois pontos do mapa que
+    representam "quem eu sou" e "o que eu construo publicamente". É um ano de <b>identidade e carreira convergindo</b>, com dinheiro/parceria
+    (Casa VIII) dando o combustível e a comunicação (Casa III) pedindo revisão antes de qualquer anúncio grande. Isso fecha, quase à risca, com
+    o seu Arcano cabalístico 65 encerrando exatamente em 26/10/2026 — numerologia e astrologia, de novo, apontando pro mesmo calendário.</p>
+  </div>
+  <div class="pagesub">thais · revolução solar 2026 · leitura</div>
+  <div class="pagenum">14</div>
+</div>
+
+<!-- =========================================================== PAGE 15 — SÍNTESE FINAL / CARTA =========================================================== -->
+<div class="page">
+  <div class="tape matcha" style="top:14mm; left:50%; margin-left:-54px; transform:rotate(-2deg);"></div>
+  <h1 class="page-title display-italic" style="font-size:28px; margin-top:16mm; text-align:center;">pra fechar ✦</h1>
+  <hr class="rule full" style="width:60%; margin:14px auto 20px auto;">
+
+  <div class="card" style="padding:26px 30px; margin-top:6px;">
+    <p>Thais — ou melhor, CArizona, ou Cá, ou ÁR'Z, dependendo do chapéu que você estiver usando naquele dia — seu mapa, nos dois sistemas,
+    conta a mesma história: alguém que carrega várias coisas grandes ao mesmo tempo sem perder o fio. A numerologia mostra o destino 8 e a
+    missão 4 — poder e estrutura. A astrologia mostra o Sol em Escorpião com Ascendente em Libra — intensidade por dentro, elegância por fora.
+    O Arcano 65 fecha em outubro de 2026, exatamente quando sua revolução solar concentra tudo na Casa X e na Casa I. Os números e os astros
+    não escolhem por você. Eles só confirmam o que a coragem de mudar de nome — e de se apresentar de um jeito novo — já estava insinuando.</p>
+    <br>
+    <p>Guarde este dossiê e volte nele quando as marcas de óculos estiverem prontas pra sair do papel, e de novo perto de outubro de 2026,
+    quando o arcano e a revolução solar deste ano se fecham juntos. E lembre-se sempre: numerologia e astrologia são ferramentas de
+    autoconhecimento, espelhos simbólicos — não roteiros fechados. A decisão final, como sempre, é sua.</p>
+  </div>
+
+  <div style="text-align:center; margin-top:34px;">
+    <div class="script" style="font-size:20px;">torcendo pela sua projeção — nacional primeiro, o mundo depois,</div>
+    <div class="display display-italic" style="font-size:21px; margin-top:8px; color:var(--clay);">sua amiga de numerologia cabalística &amp; leitura astrológica</div>
+  </div>
+
+  <div class="footer-note">— dossiê elaborado com base nos dados de nascimento, testes de nome e mapa astral fornecidos pela cliente —</div>
+</div>
+
+</body>
+</html>

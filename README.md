@@ -1,4 +1,4 @@
-# Design Astrology Chart
+# design astrology chart
 
 > Reusable **CSS + HTML templates** for designing astrology charts.
 

@@ -1,7 +1,32 @@
-# design_astrology_chart
-Templates in CSS + HTML based on Thais' charts templates. 
+# Design Astrology Chart
 
-### 
+> Reusable **CSS + HTML templates** for designing astrology charts.
 
-Automático (o normal): basta pedir naturalmente o que a skill descreve — "monta um relatório de numerologia e astrologia pra [nome]", "faz a numerologia do nome dela", "analisa esse mapa astral dela" — e eu já reconheço que bate com a descrição da skill e uso o template sozinha, sem você precisar mencionar o nome dela.
-Chamando pelo nome: se você escrever template-relatorio-numerologia-astrologia (com ou sem / na frente) junto do pedido, também funciona — eu vejo esse nome na minha lista de skills disponíveis e sei exatamente a qual arquivo isso se refere, e uso ela diretamente.
+## Overview
+
+A template kit for astrology chart design — styled, printable layouts built
+with plain HTML and CSS. Part of my creative × data intersection work
+(where data meets art).
+
+## Repository contents
+
+| File | Purpose |
+|---|---|
+| `README.md` | This doc |
+| `SKILL.md` | Skill/usage description for agents |
+| `best_practices.md` | Design best practices |
+| `matcha_template.html` | Example chart template (matcha palette) |
+| `thais-charts-original.gitignore` | Chart-source ignore rules |
+
+## Tech stack
+
+HTML · CSS · design systems
+
+## What this demonstrates
+
+- Creative coding (data × design)
+- Reusable, documented template design
+
+## Author
+
+**Carolinna Anderson** — [GitHub profile](https://github.com/carollinaanderson) · [Behance](https://behance.net/carolinvictori7)
